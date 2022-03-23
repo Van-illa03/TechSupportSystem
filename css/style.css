@@ -1,0 +1,50 @@
+body{
+background-color: #BFD9F2;
+}
+
+
+
+nav{
+   background-color: #224375;
+    padding: 60px;
+}
+
+.navbar-brand{
+color: #FFFFFF;
+font-weight: bold;
+font-size: 25px;
+padding-left: 0px !important;
+}
+
+.nav-link{
+color: #FFFFFF;
+
+}
+.nav-link:hover{
+color: #FFFFFF;
+}
+
+#logo{
+padding-right: 10px !important;
+width: 100px;
+height: 75px;
+}
+
+#logincontainer{
+   max-width: 30%;
+}
+
+#signupcontainer{
+   max-width: 40%;
+   }
+
+#selectsignup{
+   border-radius: 30px;
+   width: 30%;
+}
+
+#selectlogin{
+   border-radius: 30px;
+   width: 30%;
+}
+
