@@ -34,33 +34,41 @@
 <div class="container" id="signupcontainer">
     <center>
         <h2>SIGN UP</h2>
-        <select class="form-select" aria-label="Default select example" id="selectsignup">
-            <center>
-                <option selected>Select User</option>
-                <option value="1">Admin</option>
-                <option value="2">Support Team</option>
-            </center>
-        </select>
-        <form action="" method="POST">
 
+        <form action="signup_process.php" method="POST">
+            <select class="form-select" aria-label="Default select example" id="selectsignup" name="usertype">
+                <center>
+                    <option value="Administrator">Administrator</option>
+                    <option value="Support Team">Support Team</option>
+                    <option value="Intern" selected>Intern</option>
+                </center>
+            </select>
+            <?php if (isset($_GET['error'])) { ?>
+                <p class="error"><?php echo $_GET['error']; ?> </p>
+            <?php } ?>
             <div class="form-group" id="">
                 <label for="name"></label>
-                <input type="name" class="form-control" id="name" placeholder="Enter name" name="name">
+                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
 
                 <label for="email"></label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
 
                 <label for="pwd"></label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-
-                <label for="dsgntn"></label>
-                <input type="designation" class="form-control" id="dsgntn" placeholder="Enter designation" name="dsgntn">
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password1">
 
                 <label for="cnfrmpwd"></label>
-                <input type="password" class="form-control" id="cnfrmpwd" placeholder="Confirm password" name="cnfrmpswd">
-            </div>
+                <input type="password" class="form-control" id="cnfrmpwd" placeholder="Confirm password" name="password2">
 
-            <button type="submit" class="btn btn-primary">Register</button>
+                <select class="form-select my-4 py-2 rounded" id="companyselect" aria-label="Default select example" name="companydrp">
+                    <center>
+                        <option value="Melham Construction Corporation">Melham Construction Company</option>
+                        <option value="Anafara">Anafara</option>
+                        <option value="Visvis Logistics" selected>Visvis Logistics</option>
+                    </center>
+                </select>
+                </div>
+
+            <button type="submit" class="btn btn-primary" name="registerbtn">Register</button>
         </form>
     </center>
 </div>
