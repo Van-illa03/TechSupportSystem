@@ -1,33 +1,32 @@
-body{
-background-color: #BFD9F2;
+html, body{
+   background-color: #BFD9F2;
 }
-
 
 
 nav{
    background-color: #224375;
-    padding: 60px;
+   padding: 60px;
 }
 
 .navbar-brand{
-color: #FFFFFF;
-font-weight: bold;
-font-size: 25px;
-padding-left: 0px !important;
+   color: #FFFFFF;
+   font-weight: bold;
+   font-size: 25px;
+   padding-left: 0px !important;
 }
 
 .nav-link{
-color: #FFFFFF;
+   color: #FFFFFF;
 
 }
 .nav-link:hover{
-color: #FFFFFF;
+   color: #FFFFFF;
 }
 
 #logo{
-padding-right: 10px !important;
-width: 100px;
-height: 75px;
+   padding-right: 10px !important;
+   width: 100px;
+   height: 75px;
 }
 
 #logincontainer{
@@ -36,7 +35,7 @@ height: 75px;
 
 #signupcontainer{
    max-width: 40%;
-   }
+}
 
 #selectsignup{
    border-radius: 30px;
@@ -47,7 +46,126 @@ height: 75px;
    border-radius: 30px;
    width: 30%;
 }
-#companyselect{
-   width: 100%;
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+
+
+/* Toggle Styles */
+
+#viewport {
+   padding-left: 250px;
+   -webkit-transition: all 0.5s ease;
+   -moz-transition: all 0.5s ease;
+   -o-transition: all 0.5s ease;
+   transition: all 0.5s ease;
 }
 
+#content {
+   width: 100%;
+   position: relative;
+   margin-right: 0;
+}
+
+/* Sidebar Styles */
+
+#sidebar {
+   z-index: 1000;
+   position: fixed;
+   left: 250px;
+   width: 250px;
+   height: 100%;
+   margin-left: -250px;
+   overflow-y: auto;
+   background: #A2C5E7;
+   -webkit-transition: all 0.5s ease;
+   -moz-transition: all 0.5s ease;
+   -o-transition: all 0.5s ease;
+   transition: all 0.5s ease;
+}
+
+#sidebar header {
+   background-color: #A2C5E7;
+   font-size: 20px;
+   line-height: 52px;
+   text-align: center;
+}
+
+#sidebar header p {
+
+}
+
+#sidebar header a:hover {
+   color: #fff;
+}
+
+#sidebar .nav{
+
+}
+
+#sidebar .nav{
+   background: white;
+   color: #CFD8DC;
+   font-size: 15px;
+}
+
+#navblue{
+   background: #AAD6FF;
+   width: 100%;
+   display: block;
+}
+
+.nav-link {
+   margin-top: 15px;
+   margin-bottom: 15px;
+   padding: 15px;
+}
+
+.nav-item {
+   display: block;
+}
+
+.nav-item:hover{
+   background: #224375;
+   color: #ECEFF1;
+   transition: .2s;
+}
+
+#navblue:hover{
+   background: #224375;
+   color: #ECEFF1;
+   transition: .2s;
+}
+
+#sidebar .nav a:hover{
+   background: none;
+   color: #ECEFF1;
+   transition: .1s;
+}
+
+#sidebar .nav-link{
+   color: black;
+   font-weight: bold;
+}
+
+#navbarright{
+   background-color: transparent;
+}
+
+i{
+   color: black;
+}
+#content{
+   background-color: #BFD9F2;
+}
+
+/* Creating Ticket*/
+
+#ticketcard{
+   max-width: 50%;
+
+}
+.card-header{
+   height: 70px;
+   margin-top: auto;
+   padding: auto;
+}
