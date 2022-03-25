@@ -1,3 +1,15 @@
+<?php
+//database connection
+$con=mysqli_connect("localhost","root","","techsupportsystem");
+if (!$con){
+    echo "failed to connect";
+    die();
+}
+session_start();
+//getting the id of the current user from session and assigning it to $currentuser variable
+$currentuser = $_SESSION['id'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,18 +24,24 @@
 </head>
 
 <body>
+<?php
+//query on getting the information of the current user that matches the id on the $currentuser variable
+$userquery = mysqli_query($con,"SELECT Name,Email,UID,Company FROM internuser WHERE UID='$currentuser'");
+$getcurrentuser = mysqli_fetch_assoc($userquery);
+?>
 <nav class="navbar navbar-expand-sm">
   <div class="container-fluid">
     <a class ="navbar-brand"disabled> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo px-auto">Automated Technical Support System</a>
     <ul class="navbar-nav">
       <li class="nav-item">
       </li>
+        <li class="nav-item">
+        <p class="nav-link" disabled><?php echo $getcurrentuser['Name']?></p>
+        </li>
       <li class="nav-item">
-        <a class="nav-link  "href="login.html">LOGIN</a>
+        <a class="nav-link  "href="login.php">LOG OUT</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="signup.html">SIGN UP</a>
-      </li>
+
     </ul>
   </div>
 </nav>
@@ -51,6 +69,10 @@
       <li class="nav-item" >
         <a class="nav-link bi bi-bookmark-check-fill" href="#"> Closed</a>
       </li>
+        <li class="nav-item" id="navblue">
+            <a class="nav-link bi bi-hourglass-split" href="creatingticket.php"> Create Ticket</a>
+        </li>
+
     </ul>
   </div>
 

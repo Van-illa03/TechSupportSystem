@@ -169,3 +169,13 @@ i{
    margin-top: auto;
    padding: auto;
 }
+
+
+/* content container */
+
+#content-container{
+   background: #FFFFFF;
+   height: 100px;
+}
+
+

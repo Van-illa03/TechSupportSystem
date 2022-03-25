@@ -1,3 +1,7 @@
+<?php
+session_start();
+unset($_SESSION['id']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +25,7 @@
             <li class="nav-item">
             </li>
             <li class="nav-item">
-                <a class="nav-link  "href="">LOGIN</a>
+                <a class="nav-link  "href="login.php">LOGIN</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="signup.php">SIGN UP</a>

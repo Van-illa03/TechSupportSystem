@@ -1,3 +1,15 @@
+<?php
+//database connection
+$con=mysqli_connect("localhost","root","","techsupportsystem");
+if (!$con){
+    echo "failed to connect";
+    die();
+}
+session_start();
+//getting the id of the current user from session and assigning it to $currentuser variable
+$currentuser = $_SESSION['id'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,24 +38,24 @@
             Create Ticket
         </div>
 
+        <form action="ticketprocess.php" method="POST">
         <div class="card-body">
             <div class="mb-3">
                 <div class="row">
                     <div class="col-8">
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Subject">
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Subject" name="subject">
                     </div>
 
                     <div class="col-4">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Category</option>
-                            <option value="1">General</option>
-                            <option value="2">Technical</option>
+                        <select class="form-select" aria-label="Default select example" name="category">
+                            <option value="General">General</option>
+                            <option value="Technical">Technical</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="mb-3">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" name="content"></textarea>
             </div>
 
             <div class="row mx-auto">
@@ -51,13 +63,14 @@
                     <a></a>
                 </div>
                 <div class="col-2">
-                    <a href="#" class="btn btn-primary">Cancel</a>
+                    <a class="btn btn-primary" href="creatingticket.php">Cancel</a>
                 </div>
                 <div class="col-2">
-                    <a href="#" class="btn btn-primary">Submit</a>
+                    <button class="btn btn-primary" type="submit" name="submit">Submit</button>
                 </div>
             </div>
         </div>
+        </form>
 
     </div>
 </div>

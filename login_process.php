@@ -50,10 +50,10 @@
     }
 
     //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
-    $_SESSION['id'] = $FilteringResult['id'];
+    $_SESSION['id'] = $FilteringResult['UID'];
 ?>
 
 <script type="text/javascript">
     alert('Registration Successful');
-    window.location="LandingPage.html";
+    window.location="internhomepage.php";
 </script>
