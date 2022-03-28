@@ -78,10 +78,8 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 
   <!-- Content -->
   <div id="content">
-    <div class="container-fluid">
-      <br>
+    <div class="container-fluid pt-3 shadow-sm" id="content-container">
       <h2> *Choosen Tab*</h2>
-      <br>
     </div>
   </div>
 </div>
