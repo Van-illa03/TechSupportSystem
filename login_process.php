@@ -54,6 +54,6 @@
 ?>
 
 <script type="text/javascript">
-    alert('Registration Successful');
+    alert('Login Successful');
     window.location="internhomepage.php";
 </script>

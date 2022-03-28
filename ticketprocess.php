@@ -15,16 +15,17 @@ $currentuser = $_SESSION['id'];
 
         $Query = mysqli_query($con,"SELECT * FROM internuser WHERE UID='$currentuser' LIMIT 1");
         $QueryResult= mysqli_fetch_assoc($Query);
-        $sender = "#".$currentuser."-".$QueryResult['Name'];
+        $sender = $QueryResult['Name'];
         $subject = $_POST['subject'];
         $category = $_POST['category'];
         $content = $_POST['content'];
+        $date = $_POST['timeStamp'];
 
 
 
 
-        $InsertTicket = "INSERT INTO tickets (Sender_Name, Subject, Category, Content) 
-                      VALUES('$sender','$subject','$category','$content')";
+        $InsertTicket = "INSERT INTO tickets (Sender_ID,Sender_Name, Subject, Category, Content, Date) 
+                      VALUES('$currentuser','$sender','$subject','$category','$content','$date')";
         mysqli_query($con, $InsertTicket);
 
     }

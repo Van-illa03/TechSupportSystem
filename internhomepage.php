@@ -80,6 +80,43 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
   <div id="content">
     <div class="container-fluid pt-3 shadow-sm" id="content-container">
       <h2> *Choosen Tab*</h2>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Ticket ID</th>
+                <th scope="col">Sender ID</th>
+                <th scope="col">Sende Name</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Category</th>
+                <th scope="col">Content</th>
+                <th scope="col">Personnel ID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+        <?php
+        $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE Sender_ID='$currentuser'");
+
+        while($tickets = mysqli_fetch_array($getTickets)){ ?>
+            <tr>
+                <td><a href="delete.php?id=<?php echo $tickets['TID'];?> "> <?php echo $tickets['TID'];?> </a></td>
+            <td><?php echo $tickets['Sender_ID']; ?></td>
+            <td><?php echo $tickets['Sender_Name']; ?></td>
+            <td><?php echo $tickets['Subject']; ?></td>
+            <td><?php echo $tickets['Category']; ?></td>
+            <td><?php echo $tickets['Content']; ?></td>
+            <td><?php echo $tickets['Personnel_ID']; ?></td>
+            <td><?php echo $tickets['Date']; ?></td>
+            <td><a href="#" id="<?php echo $tickets['Sender_ID']; ?>" class="delete" title="Delete"><button class="btn btn-danger btn-mini"><i class="bi bi-trash"></i></button></a></td>
+
+            </tr>
+            <br>
+            <?php
+        }
+        ?>
+            </tbody>
+            </table>
     </div>
   </div>
 </div>
