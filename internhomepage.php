@@ -36,10 +36,10 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
       <li class="nav-item">
       </li>
         <li class="nav-item">
-        <p class="nav-link" disabled><?php echo $getcurrentuser['Name']?></p>
+        <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
         </li>
       <li class="nav-item">
-        <a class="nav-link  "href="login.php">LOG OUT</a>
+          <h6><a class="nav-link  "href="login.php">Log Out</a></h6>
       </li>
 
     </ul>
@@ -77,48 +77,49 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
   </div>
 
   <!-- Content -->
-  <div id="content">
-    <div class="container-fluid pt-3 shadow-sm" id="content-container">
-      <h2> *Choosen Tab*</h2>
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Ticket ID</th>
-                <th scope="col">Sender ID</th>
-                <th scope="col">Sende Name</th>
-                <th scope="col">Subject</th>
-                <th scope="col">Category</th>
-                <th scope="col">Content</th>
-                <th scope="col">Personnel ID</th>
-                <th scope="col">Date</th>
-                <th scope="col">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-        <?php
-        $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE Sender_ID='$currentuser'");
-
-        while($tickets = mysqli_fetch_array($getTickets)){ ?>
-            <tr>
-                <td><a href="delete.php?id=<?php echo $tickets['TID'];?> "> <?php echo $tickets['TID'];?> </a></td>
-            <td><?php echo $tickets['Sender_ID']; ?></td>
-            <td><?php echo $tickets['Sender_Name']; ?></td>
-            <td><?php echo $tickets['Subject']; ?></td>
-            <td><?php echo $tickets['Category']; ?></td>
-            <td><?php echo $tickets['Content']; ?></td>
-            <td><?php echo $tickets['Personnel_ID']; ?></td>
-            <td><?php echo $tickets['Date']; ?></td>
-            <td><a href="#" id="<?php echo $tickets['Sender_ID']; ?>" class="delete" title="Delete"><button class="btn btn-danger btn-mini"><i class="bi bi-trash"></i></button></a></td>
-
-            </tr>
-            <br>
+      <div id="content">
+          <br>
+        <div class="container-fluid" id="content-container">
+            <h2>All Tickets</h2>
+             <table class="table table-hover table-bordered table-striped" style="border-color:#224375">
+                <thead>
+                <tr id="tableRow">
+                    <th scope="col">Ticket ID</th>
+                    <th scope="col">Sender ID</th>
+                    <th scope="col">Sender Name</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Personnel ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
             <?php
-        }
-        ?>
-            </tbody>
-            </table>
-    </div>
-  </div>
+            $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE Sender_ID='$currentuser'");
+
+            while($tickets = mysqli_fetch_array($getTickets)){ ?>
+                <tr>
+                    <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?> "> <?php echo $tickets['TID'];?> </a></td>
+                <td class="text-center"><?php echo $tickets['Sender_ID']; ?></td>
+                <td class="text-center"><?php echo $tickets['Sender_Name']; ?></td>
+                <td><?php echo $tickets['Subject']; ?></td>
+                <td class="text-center"><?php echo $tickets['Category']; ?></td>
+                <td><?php echo $tickets['Content']; ?></td>
+                <td class="text-center"><?php echo $tickets['Personnel_ID']; ?></td>
+                <td class="text-center"><?php echo $tickets['Date']; ?></td>
+                <td class="text-center"><a href="#" id="<?php echo $tickets['Sender_ID']; ?>" class="delete" title="Delete"><button class="btn btn-danger btn-mini"><i class="bi bi-trash"></i></button></a></td>
+
+                </tr>
+
+                <?php
+            }
+            ?>
+                </tbody>
+                </table>
+        </div>
+      </div>
 </div>
 
 </body>

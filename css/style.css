@@ -15,9 +15,12 @@ nav{
    padding-left: 0px !important;
 }
 
-.nav-link{
+h6.nav-link{
    color: #FFFFFF;
+}
 
+a.nav-link{
+   color: #FFFFFF;
 }
 .nav-link:hover{
    color: #FFFFFF;
@@ -174,8 +177,39 @@ i{
 /* content container */
 
 #content-container{
-   background: #FFFFFF;
-   height: 100px;
+
 }
+
+/* tableDesign */
+
+table{
+   max-width: 100%;
+   background-color: transparent;
+   border-collapse: collapse;
+   border-spacing: 0;
+   width: 100%;
+   margin-bottom: 20px;
+   border: 2px;
+   margin-top: 20px;
+}
+
+thead {
+   background-color: #224375;
+   border-radius: 50px;
+   color: white;
+}
+
+tr#tableRow{
+   height: 50px;
+   padding-left: 5%;
+}
+
+td{
+
+}
+
+
+
+
 
 
