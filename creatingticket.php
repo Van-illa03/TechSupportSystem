@@ -29,8 +29,35 @@ $currentuser = $_SESSION['id'];
         <a class ="navbar-brand"disabled> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo px-auto">Automated Technical Support System</a>
     </div>
 </nav>
-<br>
-<br>
+<div id="viewport">
+
+    <!-- Sidebar -->
+    <div class id="sidebar">
+        <header>
+            <p></p>
+        </header>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link bi bi-ticket-detailed-fill" href="internhomepage.php"> All Tickets</a>
+            </li>
+            <li class="nav-item " id="navblue">
+                <a class="nav-link  bi bi-ticket-perforated-fill "href="internunassignedticket.php"> Unassigned Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bi bi-envelope-open-fill" href="internopenticket.php"> Open</a>
+            </li>
+            <li class="nav-item" id="navblue">
+                <a class="nav-link bi bi-hourglass-split" href="internpendingticket.php"> Pending</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link bi bi-bookmark-check-fill" href="internclosedticket.php"> Closed</a>
+            </li>
+            <li class="nav-item" id="navblue">
+                <a class="nav-link bi bi-hourglass-split" href="creatingticket.php"> Create Ticket</a>
+            </li>
+
+        </ul>
+    </div>
 
 <div class="container" >
     <div class="card mx-auto" id="ticketcard">

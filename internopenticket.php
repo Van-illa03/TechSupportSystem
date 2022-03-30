@@ -80,7 +80,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
       <div id="content">
           <br>
         <div class="container-fluid" id="content-container">
-            <h2>All Tickets</h2>
+            <h2>Open Tickets</h2>
              <table class="table table-hover table-bordered table-striped" style="border-color:#224375">
                 <thead>
                 <tr id="tableRow">
@@ -98,11 +98,11 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 </thead>
                 <tbody>
             <?php
-            $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE Sender_ID='$currentuser'");
+            $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE Sender_ID='$currentuser' AND Status='Open'");
 
             while($tickets = mysqli_fetch_array($getTickets)){ ?>
                 <tr>
-                    <td class="text-center"><a href="viewticket.php?id=<?php echo $tickets['TID'];?> "> <?php echo $tickets['TID'];?> </a></td>
+                <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?> "> <?php echo $tickets['TID'];?> </a></td>
                 <td class="text-center"><?php echo $tickets['Sender_ID']; ?></td>
                 <td class="text-center"><?php echo $tickets['Sender_Name']; ?></td>
                 <td><?php echo $tickets['Subject']; ?></td>
@@ -111,7 +111,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 <td><?php echo $tickets['Content']; ?></td>
                 <td class="text-center"><?php echo $tickets['Personnel_ID']; ?></td>
                 <td class="text-center"><?php echo $tickets['Date']; ?></td>
-                <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?>" class="delete" title="Delete"><button class="btn btn-danger btn-mini"><i class="bi bi-trash"></i></button></a></td>
+                <td class="text-center"><a href="#" id="<?php echo $tickets['Sender_ID']; ?>" class="delete" title="Delete"><button class="btn btn-danger btn-mini"><i class="bi bi-trash"></i></button></a></td>
 
                 </tr>
 

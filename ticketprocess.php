@@ -24,8 +24,8 @@ $currentuser = $_SESSION['id'];
 
 
 
-        $InsertTicket = "INSERT INTO tickets (Sender_ID,Sender_Name, Subject, Category, Content, Date) 
-                      VALUES('$currentuser','$sender','$subject','$category','$content','$date')";
+        $InsertTicket = "INSERT INTO tickets (Sender_ID,Sender_Name, Subject, Category, Content, Status, Date) 
+                      VALUES('$currentuser','$sender','$subject','$category','$content','Open','$date')";
         mysqli_query($con, $InsertTicket);
 
     }
