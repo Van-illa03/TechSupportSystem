@@ -76,51 +76,69 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         </ul>
     </div>
 
+    <?php
+    $id=$_GET["id"];
+    $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE TID='$id'");
+    $chosenTicket = mysqli_fetch_array($getTickets)
+    ?>
   <!-- Content -->
       <div id="content">
           <br>
         <div class="container-fluid" id="content-container">
-            <h2>Pending Tickets</h2>
-             <table class="table table-hover table-bordered table-striped" style="border-color:#224375">
-                <thead>
-                <tr id="tableRow">
-                    <th scope="col">Ticket ID</th>
-                    <th scope="col">Sender ID</th>
-                    <th scope="col">Sender Name</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Content</th>
-                    <th scope="col">Personnel ID</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-            <?php
-            $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE Sender_ID='$currentuser' AND Status='Pending'");
+            <h2>View Ticket</h2>
 
-            while($tickets = mysqli_fetch_array($getTickets)){ ?>
-                <tr>
-                <td class="text-center"> <?php echo $tickets['TID'];?></td>
-                <td class="text-center"><?php echo $tickets['Sender_ID']; ?></td>
-                <td class="text-center"><?php echo $tickets['Sender_Name']; ?></td>
-                <td><?php echo $tickets['Subject']; ?></td>
-                <td class="text-center"><?php echo $tickets['Category']; ?></td>
-                <td class="text-center"><?php echo $tickets['Status']; ?></td>
-                <td><?php echo $tickets['Content']; ?></td>
-                <td class="text-center"><?php echo $tickets['Personnel_ID']; ?></td>
-                <td class="text-center"><?php echo $tickets['Date']; ?></td>
-                    <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?>" class="delete" title="Delete Ticket"><button class="btn btn-danger btn-mini"><i class="bi bi-trash"></i></button></a>
-                        <a href="viewticket.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><button class="btn btn-primary btn-mini "><i class="bi bi-eye-fill"></i></i></button></a>
-                    </td>
-                </tr>
 
-                <?php
-            }
-            ?>
-                </tbody>
-                </table>
+            <div class="container">
+                <div class="card mx-auto" id="ticketcard">
+                    <div class="card-header text-white" id="cardheader" style="background-color: #224375">
+                        <div class="row">
+                            <div class="col-7">
+                                <h4>Ticket #<?php echo $chosenTicket['TID'];?> | <?php echo $chosenTicket['Status']; ?></h4>
+                            </div>
+                            <div class="col-5">
+                                <p style="float:right;"><?php echo $chosenTicket['Date'];?></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form action="ticketprocess.php" method="POST">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4><?php echo $chosenTicket['Subject'];?> (<?php echo $chosenTicket['Category'];?>)</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <p><?php echo $chosenTicket['Sender_Name'];?> | <?php echo $chosenTicket['Sender_Email'];?></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" name="content" disabled><?php echo $chosenTicket['Content'];?></textarea>
+                            </div>
+
+                            <div class="row mx-auto">
+                                <div class="col-8">
+                                    <a></a>
+                                </div>
+                                <div class="col-2">
+                                    <a class="btn btn-primary" href="creatingticket.php">Cancel</a>
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" class="form-control" id="current-date-time" name="timeStamp" readonly="true">
+                    </form>
+
+                </div>
+            </div>
+
+
         </div>
       </div>
 </div>

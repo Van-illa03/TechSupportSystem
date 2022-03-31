@@ -168,9 +168,8 @@ i{
 
 }
 .card-header{
-   height: 70px;
+   height: 45px;
    margin-top: auto;
-   padding: auto;
 }
 
 
@@ -199,14 +198,6 @@ thead {
    color: white;
 }
 
-tr#tableRow{
-   height: 50px;
-   padding-left: 5%;
-}
-
-td{
-
-}
 
 
 

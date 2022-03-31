@@ -16,6 +16,7 @@ $currentuser = $_SESSION['id'];
         $Query = mysqli_query($con,"SELECT * FROM internuser WHERE UID='$currentuser' LIMIT 1");
         $QueryResult= mysqli_fetch_assoc($Query);
         $sender = $QueryResult['Name'];
+        $sender_email = $QueryResult['Email'];
         $subject = $_POST['subject'];
         $category = $_POST['category'];
         $content = $_POST['content'];
@@ -24,8 +25,8 @@ $currentuser = $_SESSION['id'];
 
 
 
-        $InsertTicket = "INSERT INTO tickets (Sender_ID,Sender_Name, Subject, Category, Content, Status, Date) 
-                      VALUES('$currentuser','$sender','$subject','$category','$content','Open','$date')";
+        $InsertTicket = "INSERT INTO tickets (Sender_ID,Sender_Name, Sender_Email, Subject, Category, Content, Status, Date) 
+                      VALUES('$currentuser','$sender','$sender_email','$subject','$category','$content','Open','$date')";
         mysqli_query($con, $InsertTicket);
 
     }

@@ -102,7 +102,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 
             while($tickets = mysqli_fetch_array($getTickets)){ ?>
                 <tr>
-                <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?> "> <?php echo $tickets['TID'];?> </a></td>
+                <td class="text-center"><?php echo $tickets['TID'];?></td>
                 <td class="text-center"><?php echo $tickets['Sender_ID']; ?></td>
                 <td class="text-center"><?php echo $tickets['Sender_Name']; ?></td>
                 <td><?php echo $tickets['Subject']; ?></td>
@@ -111,8 +111,9 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 <td><?php echo $tickets['Content']; ?></td>
                 <td class="text-center"><?php echo $tickets['Personnel_ID']; ?></td>
                 <td class="text-center"><?php echo $tickets['Date']; ?></td>
-                <td class="text-center"><a href="#" id="<?php echo $tickets['Sender_ID']; ?>" class="delete" title="Delete"><button class="btn btn-danger btn-mini"><i class="bi bi-trash"></i></button></a></td>
-
+                <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?>" class="delete" title="Delete Ticket"><button class="btn btn-danger btn-mini"><i class="bi bi-trash"></i></button></a>
+                <a href="viewticket.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><button class="btn btn-primary btn-mini "><i class="bi bi-eye-fill"></i></i></button></a>
+                </td>
                 </tr>
 
                 <?php
