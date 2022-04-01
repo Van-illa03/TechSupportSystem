@@ -55,20 +55,21 @@
         $RegisterUser = "INSERT INTO internuser (Name, Email, Password, Company) 
                       VALUES('$name','$email','$password1','$company')";
         mysqli_query($con, $RegisterUser);
+        echo '<script>alert("Sign up successful.")</script>';
+        header("location: login.php");
     }
     else if ($usertype === "Support Team") {
-    $RegisterUser = "INSERT INTO supportteam (Name, Email, Password, Company)
-    VALUES('$name','$email','$password1','$company')";
-    mysqli_query($con, $RegisterUser);
+        $RegisterUser = "INSERT INTO supportteam (Name, Email, Password, Company)
+        VALUES('$name','$email','$password1','$company')";
+        mysqli_query($con, $RegisterUser);
+        echo '<script> alert("Sign up successful.") </script>';
+        header("location: login.php");
     }
-    else if ($usertype === "Admin") {
-    $RegisterUser = "INSERT INTO administrator (Name, Email, Password, Company) 
-                      VALUES('$name','$email','$password1','$company')";
-    mysqli_query($con, $RegisterUser);
+    else if ($usertype === "Administrator") {
+        $RegisterUser = "INSERT INTO administrator (Name, Email, Password, Company) 
+                          VALUES('$name','$email','$password1','$company')";
+        mysqli_query($con, $RegisterUser);
+        echo '<script> alert ("Sign up successful.") </script>';
+        header("location: login.php");
     }
-
     ?>
-<script type="text/javascript">
-    alert('Registration Successful');
-    window.location="login.php";
-</script>

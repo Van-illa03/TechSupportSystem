@@ -21,10 +21,10 @@
             <li class="nav-item">
             </li>
             <li class="nav-item">
-                <a class="nav-link  "href="login.html">LOGIN</a>
+                <a class="nav-link  "href="login.php">LOGIN</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">SIGN UP</a>
+                <a class="nav-link" href="signup.php">SIGN UP</a>
             </li>
         </ul>
     </div>

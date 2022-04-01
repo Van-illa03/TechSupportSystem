@@ -17,6 +17,7 @@
     $usertype = $_POST['usertype'];
     $FilteringResult = false;
 
+
     //verification of email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         header("Location: login.php?error=Invalid Email. Check the format.");
@@ -31,7 +32,7 @@
         $Filtering = mysqli_query($con,"SELECT * FROM supportteam WHERE Email='$email' LIMIT 1");
         $FilteringResult= mysqli_fetch_assoc($Filtering);
     }
-    else if ($usertype === "Admin") {
+    else if ($usertype === "Administrator") {
         $Filtering = mysqli_query($con,"SELECT * FROM administrator WHERE Email='$email' LIMIT 1");
         $FilteringResult = mysqli_fetch_assoc($Filtering);
     }
@@ -43,17 +44,27 @@
             header("Location: login.php?error=Incorrect Password.");
             exit();
         }
+        else {
+            if ($usertype == "Intern"){
+                //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
+                $_SESSION['id'] = $FilteringResult['UID'];
+                header("location: internhomepage.php");
+            }
+            else if ($usertype == "Administrator") {
+                //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
+                $_SESSION['id'] = $FilteringResult['UID'];
+                header("location: adminhomepage.php");
+            }
+            else if ($usertype == "Support Team") {
+                //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
+                $_SESSION['id'] = $FilteringResult['UID'];
+                header("location: supporthomepage.php");
+            }
+         }
     }
     else {
         header("Location: login.php?error=The email you entered does not match any accounts.");
         exit();
     }
 
-    //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
-    $_SESSION['id'] = $FilteringResult['UID'];
 ?>
-
-<script type="text/javascript">
-    alert('Login Successful');
-    window.location="internhomepage.php";
-</script>

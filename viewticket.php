@@ -125,10 +125,9 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                                     <a></a>
                                 </div>
                                 <div class="col-2">
-                                    <a class="btn btn-primary" href="creatingticket.php">Cancel</a>
                                 </div>
                                 <div class="col-2">
-                                    <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+                                    <a href="delete.php?id=<?php echo $chosenTicket['TID'];?>" class="delete" title="Delete Ticket"><button class="btn btn-danger" type="submit" name="submit">Delete</button>
                                 </div>
                             </div>
                         </div>
