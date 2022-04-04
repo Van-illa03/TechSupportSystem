@@ -44,7 +44,7 @@
                 </center>
             </select>
             <?php if (isset($_GET['error'])) { ?>
-                <p class="error"><?php echo $_GET['error']; ?> </p>
+                <div class="alert alert-danger"><?php echo $_GET['error']; ?> </div>
             <?php } ?>
             <div class="form-group" id="">
                 <label for="name"></label>

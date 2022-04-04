@@ -61,13 +61,13 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 <a class="nav-link  bi bi-ticket-perforated-fill "href="adminunassignedticket.php"> Unassigned Tickets</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bi bi-envelope-open-fill" href="internopenticket.php"> Open</a>
+                <a class="nav-link bi bi-envelope-open-fill" href="adminopenticket.php"> Open</a>
             </li>
             <li class="nav-item" id="navblue">
-                <a class="nav-link bi bi-hourglass-split" href="internpendingticket.php"> Pending</a>
+                <a class="nav-link bi bi-hourglass-split" href="adminpendingticket.php"> Pending</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bi bi-bookmark-check-fill" href="internclosedticket.php"> Closed</a>
+                <a class="nav-link bi bi-bookmark-check-fill" href="adminclosedticket.php"> Closed</a>
             </li>
         </ul>
     </div>
@@ -107,8 +107,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 <td><?php echo $tickets['Content']; ?></td>
                 <td class="text-center"><?php echo $tickets['Personnel_ID']; ?></td>
                 <td class="text-center"><?php echo $tickets['Date']; ?></td>
-                <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?>" class="delete" title="Delete Ticket"><button class="btn btn-danger btn-mini"><i class="bi bi-trash"></i></button></a>
-                <a href="viewticket.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><button class="btn btn-primary btn-mini "><i class="bi bi-eye-fill"></i></i></button></a>
+                <td class="text-center"><a href="viewticketadmin.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><button class="btn btn-primary btn-mini "><i class="bi bi-eye-fill"></i></i></button></a>
                 </td>
 
                 </tr>

@@ -41,7 +41,7 @@ unset($_SESSION['id']);
 
         <form action="login_process.php" method="POST">
             <?php if (isset($_GET['error'])) { ?>
-                <p class="error"><?php echo $_GET['error']; ?> </p>
+                <div class="alert alert-danger"><?php echo $_GET['error']; ?> </div>
             <?php } ?>
             <select class="form-select" aria-label="Default select example" id="selectlogin" name="usertype">
                 <option value="Administrator" selected>Administrator</option>
