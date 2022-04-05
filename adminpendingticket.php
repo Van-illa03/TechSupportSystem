@@ -107,9 +107,8 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 <td><?php echo $tickets['Content']; ?></td>
                 <td class="text-center"><?php echo $tickets['Personnel_ID']; ?></td>
                 <td class="text-center"><?php echo $tickets['Date']; ?></td>
-                    <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?>" class="delete" title="Delete Ticket"><button class="btn btn-danger btn-mini"><i class="bi bi-trash"></i></button></a>
-                        <a href="viewticketadmin.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><button class="btn btn-primary btn-mini "><i class="bi bi-eye-fill"></i></i></button></a>
-                    </td>
+                <td class="text-center"><a href="viewticketadmin.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><button class="btn btn-primary btn-mini "><i class="bi bi-eye-fill"></i></i></button></a>
+                </td>
                 </tr>
 
                 <?php

@@ -26,7 +26,7 @@ $currentuser = $_SESSION['id'];
 <body>
 <?php
 //query on getting the information of the current user that matches the id on the $currentuser variable
-$userquery = mysqli_query($con,"SELECT Name,Email,UID,Company FROM supportteam WHERE UID='$currentuser'");
+$userquery = mysqli_query($con,"SELECT * FROM supportteam WHERE UID='$currentuser'");
 $getcurrentuser = mysqli_fetch_assoc($userquery);
 ?>
 <nav class="navbar navbar-expand-sm">
@@ -98,12 +98,34 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                         </div>
                     </div>
 
-                    <form action="ticketprocess.php" method="POST">
+                    <form action="updateticketsupport.php?tid=<?php echo $chosenTicket['TID'];?>" method="POST">
                         <div class="card-body">
                             <div class="mb-3">
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-9">
                                         <h4><?php echo $chosenTicket['Subject'];?> (<?php echo $chosenTicket['Category'];?>)</h4>
+                                    </div>
+                                    <div class="col-3">
+                                        <select class="form-select" aria-label="Default select example" id="selectstatus" name="ticketstatus">
+                                            <?php
+                                            $currentstatus = $chosenTicket['Status'];
+
+                                                ?>
+                                                <option value="<?php echo $currentstatus; ?>" selected> <?php echo $currentstatus; ?> </option>
+
+                                                <?php if ($currentstatus=="Open"){ ?>
+                                                    <option value="Pending">Pending</option>
+                                                    <option value="Closed">Closed</option>
+                                                <?php  }
+                                                else if ($currentstatus=="Pending"){ ?>
+                                                    <option value="Open">Open</option>
+                                                    <option value="Closed">Closed</option>
+                                            <?php  }
+                                                else if ($currentstatus=="Closed"){ ?>
+                                                    <option value="Open">Open</option>
+                                                    <option value="Pending">Pending</option>
+                                            <?php  } ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -115,26 +137,50 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                             </div>
                             <div class="mb-3">
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" name="content" disabled><?php echo $chosenTicket['Content'];?></textarea>
+                                <hr>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Personnel Notes/Comments" name="note" ><?php echo $chosenTicket['Note'];?></textarea>
                             </div>
 
                             <div class="row mx-auto">
-                                <div class="col-8">
-                                    <a></a>
+                                <div class="col-7 d-flex justify-content-start">
+                                    <p style="margin-top:10px; margin-right:8px;">Re-assign to:   </p>
+                                    <select class="form-select" aria-label="Default select example" id="selectsupport" name="supportuser">
+                                        <?php
+                                        $currentsupport = $chosenTicket['Personnel_ID'];
+                                        $fetchassignedsupport = mysqli_query($con,"SELECT * FROM supportteam WHERE UID='$currentsupport'");
+                                        $fetchsupports = mysqli_query($con,"SELECT * FROM supportteam");
+
+                                        if ($currentsupport==0){?>
+                                            <option value=0 selected>None</option>
+                                            <?php while($supportslist = mysqli_fetch_assoc($fetchsupports)){ ?>
+                                                <option value =<?php echo $supportslist['UID']; ?>>
+                                                    <?php echo $supportslist['Name'];?>
+                                                </option>
+                                            <?php }
+                                        }
+                                        else {
+                                            $assignedsupport = mysqli_fetch_assoc($fetchassignedsupport);?>
+                                            <option value=<?php echo $assignedsupport['UID']; ?> selected> <?php echo $assignedsupport['Name']; ?> </option>
+
+                                            <?php while($supportslist = mysqli_fetch_assoc($fetchsupports)){
+                                                if ( $supportslist['UID'] != $assignedsupport['UID']) { ?>
+                                                    <option value =<?php echo $supportslist['UID']; ?>>
+                                                        <?php echo $supportslist['Name'];?>
+                                                    </option>
+                                                <?php }
+                                            }
+                                        } ?>
+                                    </select>
                                 </div>
-                                <div class="col-2">
-                                </div>
-                                <div class="col-2">
-                                    <a href="delete.php?id=<?php echo $chosenTicket['TID'];?>" class="delete" title="Delete Ticket"><button class="btn btn-danger" type="submit" name="submit">Delete</button>
+                                <div class="col-5 d-flex justify-content-end">
+                                    <button class="btn btn-primary" type="submit" name="submit">Save Changes</button>
                                 </div>
                             </div>
                         </div>
                         <input type="hidden" class="form-control" id="current-date-time" name="timeStamp" readonly="true">
                     </form>
-
                 </div>
             </div>
-
-
         </div>
       </div>
 </div>

@@ -99,7 +99,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                         </div>
                     </div>
 
-                    <form action="updateticketprocess.php?tid=<?php echo $chosenTicket['TID'];?>" method="POST">
+                    <form action="updateticketadmin.php?tid=<?php echo $chosenTicket['TID'];?>" method="POST">
                         <div class="card-body">
                             <div class="mb-3">
                                 <div class="row">

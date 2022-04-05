@@ -9,7 +9,6 @@ session_start();
 
     $tid=$_GET["tid"];
     $chosenuser = $_POST['supportuser'];
-    echo $chosenuser;
 
     if (isset($_POST['submit'])){
 
