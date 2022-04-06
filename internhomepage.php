@@ -39,9 +39,15 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
         </li>
       <li class="nav-item">
-          <h6><a class="nav-link  "href="login.php">Log Out</a></h6>
+          <div class="dropdown">
+              <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
+              </ul>
+          </div>
       </li>
-
     </ul>
   </div>
 </nav>

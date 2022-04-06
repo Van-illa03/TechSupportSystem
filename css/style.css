@@ -2,7 +2,6 @@ html, body{
    background-color: #BFD9F2;
 }
 
-
 nav{
    background-color: #224375;
    padding: 60px;
@@ -19,11 +18,22 @@ h6.nav-link{
    color: #FFFFFF;
 }
 
-a.nav-link{
+a.nav-link {
    color: #FFFFFF;
 }
+
+a.nav-link {
+   color: #FFFFFF;
+}
+
+
 .nav-link:hover{
    color: #FFFFFF;
+}
+
+#dropdownMenuButton1{
+ color: white;
+   margin-top: 14px;
 }
 
 #logo{
@@ -71,6 +81,7 @@ a.nav-link{
    -moz-transition: all 0.5s ease;
    -o-transition: all 0.5s ease;
    transition: all 0.5s ease;
+
 }
 
 #content {
