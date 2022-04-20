@@ -109,8 +109,13 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 
             while($tickets = mysqli_fetch_array($getTickets)){
                 $assignedsupp = $tickets['Personnel_ID'];
-                $fetchassignedsupp = mysqli_query($con,"SELECT Name FROM supportteam WHERE UID='$assignedsupp'");
-                $getassignedsupp = mysqli_fetch_assoc($fetchassignedsupp);
+                if ($assignedsupp == 0){
+                    $getassignedsupp['Name']="None";
+                } else {
+                    $fetchassignedsupp = mysqli_query($con,"SELECT Name FROM supportteam WHERE UID='$assignedsupp'");
+                    $getassignedsupp = mysqli_fetch_assoc($fetchassignedsupp);
+                }
+
                 ?>
                 <tr>
                 <td class="text-center"> <?php echo $tickets['TID'];?></td>
