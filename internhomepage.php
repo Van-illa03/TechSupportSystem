@@ -106,10 +106,14 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             <?php
             $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE Sender_ID='$currentuser'");
 
-            while($tickets = mysqli_fetch_array($getTickets)){
+            while($tickets = mysqli_fetch_assoc($getTickets)){
                 $assignedsupp = $tickets['Personnel_ID'];
-                $fetchassignedsupp = mysqli_query($con,"SELECT Name FROM supportteam WHERE UID='$assignedsupp'");
-                $getassignedsupp = mysqli_fetch_assoc($fetchassignedsupp);
+                if ($assignedsupp == 0){
+                    $getassignedsupp['Name']="None";
+                } else {
+                    $fetchassignedsupp = mysqli_query($con,"SELECT Name FROM supportteam WHERE UID='$assignedsupp'");
+                    $getassignedsupp = mysqli_fetch_assoc($fetchassignedsupp);
+                }
                 ?>
                 <tr>
                     <td class="text-center"> <?php echo $tickets['TID'];?></td>
@@ -124,14 +128,31 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?>" class="delete" title="Delete Ticket"><button class="btn btn-danger btn-mini"><i class="bi bi-trash"></i></button></a>
                 <a href="viewticket.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><button class="btn btn-primary btn-mini "><i class="bi bi-eye-fill"></i></i></button></a>
                 </td>
-
                 </tr>
+
 
                 <?php
             }
             ?>
                 </tbody>
                 </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
       </div>
 </div>

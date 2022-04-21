@@ -109,8 +109,12 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 
             while($tickets = mysqli_fetch_array($getTickets)){
                 $assignedsupp = $tickets['Personnel_ID'];
-                $fetchassignedsupp = mysqli_query($con,"SELECT Name FROM supportteam WHERE UID='$assignedsupp'");
-                $getassignedsupp = mysqli_fetch_assoc($fetchassignedsupp);
+                if ($assignedsupp == 0){
+                    $getassignedsupp['Name']="None";
+                } else {
+                    $fetchassignedsupp = mysqli_query($con,"SELECT Name FROM supportteam WHERE UID='$assignedsupp'");
+                    $getassignedsupp = mysqli_fetch_assoc($fetchassignedsupp);
+                }
                 ?>
                 <tr>
                 <td class="text-center"> <?php echo $tickets['TID'];?></td>
@@ -132,6 +136,23 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             ?>
                 </tbody>
                 </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
       </div>
 </div>
