@@ -17,7 +17,7 @@ unset($_SESSION['id']);
 </head>
 
 
-<body>
+<body class="loginBody">
 <nav class="navbar navbar-expand-sm">
     <div class="container-fluid">
         <a class ="navbar-brand" href="LandingPage.html"> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo px-auto">Automated Technical Support System</a>
@@ -35,10 +35,12 @@ unset($_SESSION['id']);
 </nav>
 <br>
 
-<div class="container" id="logincontainer">
+<br>
+
+
+<div class="container-md" id="logincontainer">
     <center>
         <h2>LOGIN</h2>
-
         <form action="login_process.php" method="POST">
             <?php if (isset($_GET['error'])) { ?>
                 <div class="alert alert-danger"><?php echo $_GET['error']; ?> </div>
@@ -59,6 +61,7 @@ unset($_SESSION['id']);
 
     </center>
 </div>
+
 
 </body>
 </html>

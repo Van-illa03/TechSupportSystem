@@ -1,9 +1,15 @@
-html, body{
-   background-color: #BFD9F2;
+ body{
+   background-color: white;
 }
 
+.loginBody{
+    background-image: url("../images/bg1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+ }
+
 nav{
-   background-color: #224375;
+   background-color: #181f2a;
    padding: 60px;
 }
 

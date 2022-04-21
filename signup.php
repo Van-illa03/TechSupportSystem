@@ -13,7 +13,7 @@
 </head>
 
 
-<body>
+<body class="loginBody">
 <nav class="navbar navbar-expand-sm">
     <div class="container-fluid">
         <a class ="navbar-brand" href="LandingPage.html"> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo px-auto">Automated Technical Support System</a>
