@@ -23,11 +23,8 @@ $currentuser = $_SESSION['id'];
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--CDN for data tables -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.css"/>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.js"></script>
-  </style>
 </head>
 
 <body>
@@ -36,34 +33,35 @@ $currentuser = $_SESSION['id'];
 $userquery = mysqli_query($con,"SELECT Name,Email,UID,Company FROM administrator WHERE UID='$currentuser'");
 $getcurrentuser = mysqli_fetch_assoc($userquery);
 ?>
+
 <nav class="navbar navbar-expand-sm">
   <div class="container-fluid">
+      <div class="d-flex flex-row">
+          <div class="p-2">
+              <!-- Button to open the offcanvas sidebar -->
+              <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" id="hamburgerbutton">
+                  <i class="bi bi-list" id="hamburgericon"></i>
+              </button>
+          </div>
+          <div class="p-2">
+              <a class ="navbar-brand" disabled> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo">Automated Technical Support System</a>
+          </div>
+      </div>
       <ul class="navbar-nav">
           <li class="nav-item">
-              <!-- Button to open the offcanvas sidebar -->
-
+              <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
+          </li>
+          <li class="nav-item">
+              <div class="dropdown">
+                  <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#">Profile</a></li>
+                      <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
+                  </ul>
+              </div>
           </li>
       </ul>
-      <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" id="hamburgerbutton">
-          <i class="bi bi-list" id="hamburgericon"></i>
-      </button>
-    <a class ="navbar-brand"disabled> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo px-auto">Automated Technical Support System</a>
-    <ul class="navbar-nav">
-        <li class="nav-item">
-        <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
-        </li>
-      <li class="nav-item">
-          <div class="dropdown">
-              <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Profile</a></li>
-                  <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
-              </ul>
-          </div>
-      </li>
-
-    </ul>
   </div>
 </nav>
 
@@ -81,19 +79,19 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             <p></p>
         </header>
         <ul class="nav flex-column">
-            <li class="nav-item">
+            <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-ticket-detailed-fill" href="adminhomepage.php"> All Tickets</a>
             </li>
             <li class="nav-item " id="navblue">
                 <a class="nav-link  bi bi-ticket-perforated-fill "href="adminunassignedticket.php"> Unassigned Tickets</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-envelope-open-fill" href="adminopenticket.php"> Open</a>
             </li>
             <li class="nav-item" id="navblue">
                 <a class="nav-link bi bi-hourglass-split" href="adminpendingticket.php"> Pending</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-bookmark-check-fill" href="adminclosedticket.php"> Closed</a>
             </li>
         </ul>
