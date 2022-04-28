@@ -110,16 +110,16 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
              <table class="table table-hover table-bordered table-striped" style="border-color:#224375">
                 <thead>
                 <tr id="tableRow">
-                    <th scope="col">Ticket ID</th>
-                    <th scope="col">Sender ID</th>
-                    <th scope="col">Sender Name</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Content</th>
-                    <th scope="col">Personnel Assigned</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col" class="text-center">Ticket ID</th>
+                    <th scope="col" class="text-center">Sender ID</th>
+                    <th scope="col" class="text-center">Sender Name</th>
+                    <th scope="col" class="text-center">Subject</th>
+                    <th scope="col" class="text-center">Category</th>
+                    <th scope="col" class="text-center">Status</th>
+                    <th scope="col" class="text-center">Content</th>
+                    <th scope="col" class="text-center">Personnel Assigned</th>
+                    <th scope="col" class="text-center">Date</th>
+                    <th scope="col" class="text-center">Actions</th>
                 </tr>
                 </thead>
                 <tbody>

@@ -226,6 +226,18 @@ thead {
    margin:0px;
 }
 
+table {
+   table-layout: fixed;
+   width: 100%;
+}
+
+table td {
+   text-overflow: ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
+}
+
+
 
 
 
