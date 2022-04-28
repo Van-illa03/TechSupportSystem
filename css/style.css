@@ -225,6 +225,12 @@ thead {
    color: white;
 }
 
+.container-md{
+   background-color: white;
+   border-radius: 9px;
+   background-blend-mode: overlay;
+}
+
 
 
 

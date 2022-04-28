@@ -31,7 +31,8 @@
 </nav>
 <br>
 
-<div class="container" id="signupcontainer">
+<div class="container-md" id="signupcontainer">
+    <br>
     <center>
         <h2>SIGN UP</h2>
 
@@ -71,6 +72,7 @@
             <button type="submit" class="btn btn-primary" name="registerbtn">Register</button>
         </form>
     </center>
+    <br>
 </div>
 
 </body>

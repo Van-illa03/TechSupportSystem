@@ -39,6 +39,7 @@ unset($_SESSION['id']);
 
 
 <div class="container-md" id="logincontainer">
+    <br>
     <center>
         <h2>LOGIN</h2>
         <form action="login_process.php" method="POST">
@@ -60,6 +61,7 @@ unset($_SESSION['id']);
         </form>
 
     </center>
+    <br>
 </div>
 
 
