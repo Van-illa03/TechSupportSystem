@@ -1,12 +1,12 @@
- body{
+body{
    background-color: white;
 }
 
 .loginBody{
-    background-image: url("../images/bg1.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
- }
+   background-image: url("../images/bg1.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+}
 
 nav{
    background-color: #181f2a;
@@ -38,7 +38,7 @@ a.nav-link {
 }
 
 #dropdownMenuButton1{
- color: white;
+   color: white;
    margin-top: 14px;
 }
 
@@ -99,18 +99,7 @@ a.nav-link {
 /* Sidebar Styles */
 
 #sidebar {
-   z-index: 1000;
-   position: fixed;
-   left: 250px;
-   width: 250px;
-   height: 100%;
-   margin-left: -250px;
-   overflow-y: auto;
-   background: #A2C5E7;
-   -webkit-transition: all 0.5s ease;
-   -moz-transition: all 0.5s ease;
-   -o-transition: all 0.5s ease;
-   transition: all 0.5s ease;
+
 }
 
 #sidebar header {
@@ -224,14 +213,6 @@ thead {
    border-radius: 50px;
    color: white;
 }
-
-.container-md{
-   background-color: white;
-   border-radius: 9px;
-   background-blend-mode: overlay;
-}
-
-
 
 
 
