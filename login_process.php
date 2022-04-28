@@ -53,7 +53,7 @@
             else if ($usertype == "Administrator") {
                 //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
                 $_SESSION['id'] = $FilteringResult['UID'];
-                header("location: test.php");
+                header("location: adminhomepage.php");
             }
             else if ($usertype == "Support Team") {
                 //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages

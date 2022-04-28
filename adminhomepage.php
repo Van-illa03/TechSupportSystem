@@ -19,7 +19,14 @@ $currentuser = $_SESSION['id'];
   <link rel="shortcut icon" type="image/jpg" href="images/uiplogo.png"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script  type="text/javascript" src="jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--CDN for data tables -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.js"></script>
   </style>
 </head>
 
@@ -31,10 +38,17 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 ?>
 <nav class="navbar navbar-expand-sm">
   <div class="container-fluid">
+      <ul class="navbar-nav">
+          <li class="nav-item">
+              <!-- Button to open the offcanvas sidebar -->
+
+          </li>
+      </ul>
+      <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" id="hamburgerbutton">
+          <i class="bi bi-list" id="hamburgericon"></i>
+      </button>
     <a class ="navbar-brand"disabled> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo px-auto">Automated Technical Support System</a>
     <ul class="navbar-nav">
-      <li class="nav-item">
-      </li>
         <li class="nav-item">
         <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
         </li>
@@ -55,6 +69,12 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 
 <div id="viewport">
 
+    <div class="offcanvas offcanvas-start" id="demo">
+        <div class="offcanvas-header">
+            <h1 class="offcanvas-title">Menu</h1>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
     <!-- Sidebar -->
     <div class id="sidebar">
         <header>
@@ -78,6 +98,9 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             </li>
         </ul>
     </div>
+        </div>
+    </div>
+
 
   <!-- Content -->
       <div id="content">
@@ -101,9 +124,12 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 </thead>
                 <tbody>
             <?php
-            $getTickets = mysqli_query($con,"SELECT * FROM tickets");
+            // selecting rows
+            $ticketsql = "SELECT * FROM tickets  ORDER BY TID ASC";
+            $sqlresult = mysqli_query($con,$ticketsql);
 
-            while($tickets = mysqli_fetch_array($getTickets)){
+
+            while($tickets = mysqli_fetch_array($sqlresult)){
                 $assignedsupp=$tickets['Personnel_ID'];
                 if ($assignedsupp == 0){
                     $getassignedsupp['Name']="None";
@@ -113,7 +139,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 }
                 ?>
                 <tr>
-                    <td class="text-center"> <?php echo $tickets['TID'];?></td>
+                <td class="text-center"> <?php echo $tickets['TID'];?></td>
                 <td class="text-center"><?php echo $tickets['Sender_ID']; ?></td>
                 <td class="text-center"><?php echo $tickets['Sender_Name']; ?></td>
                 <td><?php echo $tickets['Subject']; ?></td>
@@ -124,9 +150,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 <td class="text-center"><?php echo $tickets['Date']; ?></td>
                 <td class="text-center"><a href="viewticketadmin.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><button class="btn btn-primary btn-mini "><i class="bi bi-eye-fill"></i></i></button></a>
                 </td>
-
                 </tr>
-
                 <?php
             }
             ?>
@@ -136,5 +160,10 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
       </div>
 </div>
 
+<script>
+    $(document).ready(function (){
+        $('table').DataTable();
+    });
+</script>
 </body>
 </html>
