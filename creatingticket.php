@@ -31,10 +31,18 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 ?>
 <nav class="navbar navbar-expand-sm">
     <div class="container-fluid">
-        <a class ="navbar-brand"disabled> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo px-auto">Automated Technical Support System</a>
+        <div class="d-flex flex-row">
+            <div class="p-2">
+                <!-- Button to open the offcanvas sidebar -->
+                <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" id="hamburgerbutton">
+                    <i class="bi bi-list" id="hamburgericon"></i>
+                </button>
+            </div>
+            <div class="p-2">
+                <a class ="navbar-brand" disabled> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo">Automated Technical Support System</a>
+            </div>
+        </div>
         <ul class="navbar-nav">
-            <li class="nav-item">
-            </li>
             <li class="nav-item">
                 <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
             </li>
@@ -48,31 +56,35 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                     </ul>
                 </div>
             </li>
-
         </ul>
     </div>
 </nav>
 <div id="viewport">
-
+    <div class="offcanvas offcanvas-start" id="demo">
+        <div class="offcanvas-header">
+            <h1 class="offcanvas-title">Menu</h1>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
     <!-- Sidebar -->
     <div class id="sidebar">
         <header>
             <p></p>
         </header>
         <ul class="nav flex-column">
-            <li class="nav-item">
+            <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-ticket-detailed-fill" href="internhomepage.php"> All Tickets</a>
             </li>
             <li class="nav-item " id="navblue">
                 <a class="nav-link  bi bi-ticket-perforated-fill "href="internunassignedticket.php"> Unassigned Tickets</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-envelope-open-fill" href="internopenticket.php"> Open</a>
             </li>
             <li class="nav-item" id="navblue">
                 <a class="nav-link bi bi-hourglass-split" href="internpendingticket.php"> Pending</a>
             </li>
-            <li class="nav-item" >
+            <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-bookmark-check-fill" href="internclosedticket.php"> Closed</a>
             </li>
             <li class="nav-item" id="navblue">
@@ -80,6 +92,8 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             </li>
 
         </ul>
+    </div>
+    </div>
     </div>
 
 <div class="container" >

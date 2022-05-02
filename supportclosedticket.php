@@ -20,7 +20,12 @@ $currentuser = $_SESSION['id'];
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-  </style>
+
+    <!--CDN for data tables -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.js"></script>
 </head>
 
 <body>
@@ -30,50 +35,66 @@ $userquery = mysqli_query($con,"SELECT Name,Email,UID,Company FROM supportteam W
 $getcurrentuser = mysqli_fetch_assoc($userquery);
 ?>
 <nav class="navbar navbar-expand-sm">
-  <div class="container-fluid">
-    <a class ="navbar-brand"disabled> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo px-auto">Automated Technical Support System</a>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-      </li>
-        <li class="nav-item">
-        <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
-        </li>
-      <li class="nav-item">
-          <div class="dropdown">
-              <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Profile</a></li>
-                  <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
-              </ul>
-          </div>
-      </li>
-
-    </ul>
-  </div>
+    <div class="container-fluid">
+        <div class="d-flex flex-row">
+            <div class="p-2">
+                <!-- Button to open the offcanvas sidebar -->
+                <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" id="hamburgerbutton">
+                    <i class="bi bi-list" id="hamburgericon"></i>
+                </button>
+            </div>
+            <div class="p-2">
+                <a class ="navbar-brand" disabled> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo">Automated Technical Support System</a>
+            </div>
+        </div>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
+            </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
 </nav>
 
 <div id="viewport">
 
-    <!-- Sidebar -->
+    <div class="offcanvas offcanvas-start" id="demo">
+        <div class="offcanvas-header">
+            <h1 class="offcanvas-title">Menu</h1>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+
+        <!-- Sidebar -->
     <div class id="sidebar">
         <header>
             <p></p>
         </header>
         <ul class="nav flex-column">
-            <li class="nav-item">
+            <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-ticket-detailed-fill" href="supporthomepage.php"> All Tickets</a>
             </li>
             <li class="nav-item" id="navblue">
                 <a class="nav-link bi bi-envelope-open-fill" href="supportopenticket.php"> Open</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-hourglass-split" href="supportpendingticket.php"> Pending</a>
             </li>
             <li class="nav-item" id="navblue" >
                 <a class="nav-link bi bi-bookmark-check-fill" href="supportclosedticket.php"> Closed</a>
             </li>
         </ul>
+    </div>
+    </div>
     </div>
 
   <!-- Content -->
@@ -124,6 +145,10 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         </div>
       </div>
 </div>
-
+<script>
+    $(document).ready(function (){
+        $('table').DataTable();
+    });
+</script>
 </body>
 </html>

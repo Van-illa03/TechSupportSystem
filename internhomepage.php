@@ -20,7 +20,12 @@ $currentuser = $_SESSION['id'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    </style>
+
+    <!--CDN for data tables -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.js"></script>
 </head>
 
 <body>
@@ -31,10 +36,18 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 ?>
 <nav class="navbar navbar-expand-sm">
     <div class="container-fluid">
-        <a class ="navbar-brand"disabled> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo px-auto">Automated Technical Support System</a>
+        <div class="d-flex flex-row">
+            <div class="p-2">
+                <!-- Button to open the offcanvas sidebar -->
+                <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" id="hamburgerbutton">
+                    <i class="bi bi-list" id="hamburgericon"></i>
+                </button>
+            </div>
+            <div class="p-2">
+                <a class ="navbar-brand" disabled> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo">Automated Technical Support System</a>
+            </div>
+        </div>
         <ul class="navbar-nav">
-            <li class="nav-item">
-            </li>
             <li class="nav-item">
                 <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
             </li>
@@ -66,19 +79,19 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                     <p></p>
                 </header>
                 <ul class="nav flex-column">
-                    <li class="nav-item">
+                    <li class="nav-item" id="navwhite">
                         <a class="nav-link bi bi-ticket-detailed-fill" href="internhomepage.php"> All Tickets</a>
                     </li>
                     <li class="nav-item " id="navblue">
                         <a class="nav-link  bi bi-ticket-perforated-fill "href="internunassignedticket.php"> Unassigned Tickets</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="navwhite">
                         <a class="nav-link bi bi-envelope-open-fill" href="internopenticket.php"> Open</a>
                     </li>
                     <li class="nav-item" id="navblue">
                         <a class="nav-link bi bi-hourglass-split" href="internpendingticket.php"> Pending</a>
                     </li>
-                    <li class="nav-item" >
+                    <li class="nav-item" id="navwhite">
                         <a class="nav-link bi bi-bookmark-check-fill" href="internclosedticket.php"> Closed</a>
                     </li>
                     <li class="nav-item" id="navblue">
@@ -88,11 +101,6 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             </div>
         </div>
     </div>
-
-    <!-- Button to open the offcanvas sidebar -->
-    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-        Open Offcanvas Sidebar
-    </button>
 
     <!-- Content -->
     <div id="content">
@@ -148,26 +156,13 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 ?>
                 </tbody>
             </table>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </div>
 </div>
-
+<script>
+    $(document).ready(function (){
+        $('table').DataTable();
+    });
+</script>
 </body>
 </html>
