@@ -24,34 +24,32 @@ unset($_SESSION['id']);
                 <div class="p-0 d-flex justify-content-center d-flex align-items-center" style="height:444px;width: 444px; padding:0px;">
                         <br>
                         <form action="login_process.php" method="POST">
-                            <h2>LOGIN</h2>
+                            <div style="text-align: center;">
+                            <h2 style="text-align: center;">LOGIN</h2>
                             <?php if (isset($_GET['error'])) { ?>
-                                <div class="alert alert-danger" style="width:300px;"><?php echo $_GET['error']; ?> </div>
+                                <div class="alert alert-danger" style="width:320px; margin-top: 5px;height: 22px; font-size: 13px; padding: 0px;"><?php echo $_GET['error']; ?> </div>
                             <?php } ?>
-                            <select class="form-select" aria-label="Default select example" id="selectlogin" name="usertype">
-                                <option value="Administrator" selected>Administrator</option>
-                                <option value="Support Team">Support Team</option>
-                                <option value="Intern">Intern</option>
-                            </select>
-                            <div class="form-group">
-                                <label for="email"></label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" style="width:300px;">
-                                <label for="pwd"></label>
-                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" style="width:300px;">
-                            </div>
-                            <button type="submit" name="login" class="btn btn-primary">Login</button>
+
+                                <select class="form-select" aria-label="Default select example" id="selectlogin" name="usertype">
+                                    <option value="Administrator" selected>Administrator</option>
+                                    <option value="Support Team">Support Team</option>
+                                    <option value="Intern">Intern</option>
+                                </select>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" style="width:300px;">
+                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" style="width:300px;">
+                                </div>
+                                <button type="submit" name="login" class="btn btn-primary">Login</button>
                         </form>
-                        <br>
-                </div>
-                <div class="align-self-center p-0">
-                    <img src="../images/croppedbg.jpg" style="height:444px; width:444px;margin:0px;">
-                </div>
-            </div>
-
-
+                            </div>
+                    </div>
+        <div class="align-self-center p-0">
+            <img src="../images/croppedbg.jpg" style="height:444px; width:444px;margin:0px;">
         </div>
-    </div>
+                </div>
 
+
+            </div>
 
 
 </body>
