@@ -18,51 +18,40 @@ unset($_SESSION['id']);
 
 
 <body class="loginBody">
-<nav class="navbar navbar-expand-sm">
-    <div class="container-fluid">
-        <a class ="navbar-brand" href="LandingPage.html"> <img id="logo" src="images/uiplogo.png" alt="MAV Logo" class ="logo px-auto">Automated Technical Support System</a>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-            </li>
-            <li class="nav-item">
-                <a class="nav-link  "href="login.php">LOGIN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="signup.php">SIGN UP</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<br>
 
-<br>
-
-
-<div class="container-md" id="logincontainer">
-    <br>
-    <center>
-        <h2>LOGIN</h2>
-        <form action="login_process.php" method="POST">
-            <?php if (isset($_GET['error'])) { ?>
-                <div class="alert alert-danger"><?php echo $_GET['error']; ?> </div>
-            <?php } ?>
-            <select class="form-select" aria-label="Default select example" id="selectlogin" name="usertype">
-                <option value="Administrator" selected>Administrator</option>
-                <option value="Support Team">Support Team</option>
-                <option value="Intern">Intern</option>
-            </select>
-            <div class="form-group">
-                <label for="email"></label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                <label for="pwd"></label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+    <div class="container" style="background-color: white; margin-top: 100px; width: 870px;height: 444px; padding:0px;">
+        <div class="d-flex">
+                <div class="p-0 d-flex justify-content-center d-flex align-items-center" style="height:444px;width: 444px; padding:0px;">
+                        <br>
+                        <form action="login_process.php" method="POST">
+                            <h2>LOGIN</h2>
+                            <?php if (isset($_GET['error'])) { ?>
+                                <div class="alert alert-danger"><?php echo $_GET['error']; ?> </div>
+                            <?php } ?>
+                            <select class="form-select" aria-label="Default select example" id="selectlogin" name="usertype">
+                                <option value="Administrator" selected>Administrator</option>
+                                <option value="Support Team">Support Team</option>
+                                <option value="Intern">Intern</option>
+                            </select>
+                            <div class="form-group">
+                                <label for="email"></label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                                <label for="pwd"></label>
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                            </div>
+                            <button type="submit" name="login" class="btn btn-primary">Login</button>
+                        </form>
+                        <br>
+                </div>
+                <div class="align-self-center p-0">
+                    <img src="../images/croppedbg.jpg" style="height:444px; width:444px;margin:0px;">
+                </div>
             </div>
-            <button type="submit" name="login" class="btn btn-primary">Login</button>
-        </form>
 
-    </center>
-    <br>
-</div>
+
+        </div>
+    </div>
+
 
 
 </body>

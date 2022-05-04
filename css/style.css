@@ -6,6 +6,8 @@ body{
    background-image: url("../images/bg1.jpg");
    background-size: cover;
    background-repeat: no-repeat;
+
+   height: auto;
 }
 
 nav{
@@ -208,7 +210,7 @@ thead {
 
 #logincontainer {
    background-color: white;
-   border-radius: 10px;
+
 }
 #signupcontainer {
    background-color: white;
@@ -236,6 +238,7 @@ table td {
    overflow: hidden;
    white-space: nowrap;
 }
+
 
 
 
