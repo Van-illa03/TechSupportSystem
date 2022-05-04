@@ -26,7 +26,7 @@ unset($_SESSION['id']);
                         <form action="login_process.php" method="POST">
                             <h2>LOGIN</h2>
                             <?php if (isset($_GET['error'])) { ?>
-                                <div class="alert alert-danger"><?php echo $_GET['error']; ?> </div>
+                                <div class="alert alert-danger" style="width:300px;"><?php echo $_GET['error']; ?> </div>
                             <?php } ?>
                             <select class="form-select" aria-label="Default select example" id="selectlogin" name="usertype">
                                 <option value="Administrator" selected>Administrator</option>
@@ -35,9 +35,9 @@ unset($_SESSION['id']);
                             </select>
                             <div class="form-group">
                                 <label for="email"></label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" style="width:300px;">
                                 <label for="pwd"></label>
-                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" style="width:300px;">
                             </div>
                             <button type="submit" name="login" class="btn btn-primary">Login</button>
                         </form>
