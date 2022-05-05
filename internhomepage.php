@@ -26,6 +26,7 @@ $currentuser = $_SESSION['id'];
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.js"></script>
+    <sript type="text/javascript" src ="//cdn.datatables.net/plug-ins/1.11.5/dataRender/ellipsis.js"></sript>
 </head>
 
 <body>
@@ -34,7 +35,7 @@ $currentuser = $_SESSION['id'];
 $userquery = mysqli_query($con,"SELECT Name,Email,UID,Company FROM internuser WHERE UID='$currentuser'");
 $getcurrentuser = mysqli_fetch_assoc($userquery);
 ?>
-<nav class="navbar navbar-expand-sm">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <div class="d-flex flex-row">
             <div class="p-2">
@@ -103,11 +104,11 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     </div>
 
     <!-- Content -->
-    <div id="content">
+    <div id="content" class="container">
         <br>
-        <div class="container-fluid" id="content-container">
+        <div class="container" id="content-container">
             <h2>All Tickets</h2>
-            <table class="table table-hover table-bordered table-striped" style="border-color:#224375">
+            <table class="table table-hover table-bordered table-striped" style="border-color:#224375" id="dtHorizontalExample" >
                 <thead>
                 <tr id="tableRow">
                     <th scope="col">Ticket ID</th>
@@ -145,8 +146,8 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                         <td><?php echo $tickets['Content']; ?></td>
                         <td class="text-center"><?php echo $getassignedsupp['Name']; ?></td>
                         <td class="text-center"><?php echo $tickets['Date']; ?></td>
-                        <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?>" class="delete" title="Delete Ticket"><button class="btn btn-danger btn-mini"><i class="bi bi-trash"></i></button></a>
-                            <a href="viewticket.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><button class="btn btn-primary btn-mini "><i class="bi bi-eye-fill"></i></i></button></a>
+                        <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?>" class="delete" title="Delete Ticket"><i class="bi bi-trash text-danger"></i></a>
+                            <a href="viewticket.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><i class="bi bi-eye-fill text-primary"></i></i></a>
                         </td>
                     </tr>
 
@@ -158,10 +159,12 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             </table>
         </div>
     </div>
-</div>
 <script>
     $(document).ready(function (){
-        $('table').DataTable();
+        $('table').DataTable({
+        });
+
+        $('.dataTables_length').addClass('bs-select');
     });
 </script>
 </body>

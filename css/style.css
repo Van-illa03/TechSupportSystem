@@ -1,9 +1,9 @@
 body{
-   background-color: white;
+   background-image:url("../images/sysbg.png");
 }
 
 .loginBody{
-   background-image: url("../images/bg1.jpg");
+   background-image: url("../images/bgbg.jpg");
    background-size: cover;
    background-repeat: no-repeat;
 
@@ -85,10 +85,11 @@ a.nav-link {
 }
 
 #content {
-   width: 100%;
-   position: relative;
-   margin-right: 0;
+   margin-top: 10px;
+   width:1200px;
    background-color: white;
+   height: 550px;
+   padding-bottom: 10px;
 }
 
 /* Sidebar Styles */
@@ -106,6 +107,10 @@ a.nav-link {
 
 #sidebar header p {
 
+}
+#demo {
+   width:250px;
+   padding:0px;
 }
 
 #sidebar header a:hover {
@@ -174,13 +179,14 @@ i{
 /* Creating Ticket*/
 
 #ticketcard{
-   max-width: 50%;
-
+   width:500px;
 }
+
+
+
 .card-header{
    height: 45px;
-   margin-top: auto;
-}
+   }
 
 
 /* content container */
@@ -192,14 +198,15 @@ i{
 /* tableDesign */
 
 table{
-   max-width: 100%;
    background-color: transparent;
    border-collapse: collapse;
    border-spacing: 0;
-   width: 100%;
+   width: auto;
    margin-bottom: 20px;
    border: 2px;
    margin-top: 20px;
+   table-layout: fixed;
+   position: relative;
 }
 
 thead {
@@ -207,6 +214,7 @@ thead {
    border-radius: 50px;
    color: white;
 }
+
 
 #logincontainer {
    background-color: white;
@@ -226,11 +234,6 @@ thead {
    color:white;
    font-size: 30px;
    margin:0px;
-}
-
-table {
-   table-layout: fixed;
-   width: 100%;
 }
 
 table td {

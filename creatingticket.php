@@ -96,7 +96,8 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     </div>
     </div>
 
-<div class="container" >
+<div class="container" id="content">
+    <br><br><br><br>
     <div class="card mx-auto" id="ticketcard">
         <div class="card-header text-white" id="cardheader" style="background-color: #224375">
             Create Ticket

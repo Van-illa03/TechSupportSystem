@@ -19,12 +19,11 @@ unset($_SESSION['id']);
 
 <body class="loginBody">
 
-    <div class="container" style="background-color: white; margin-top: 100px; width: 870px;height: 444px; padding:0px;">
+    <div class="container" style="background-color: white; margin-top: 75px; width: 870px;height: 500px; padding:0px;border-radius: 20px">
         <div class="d-flex">
-                <div class="p-0 d-flex justify-content-center d-flex align-items-center" style="height:444px;width: 444px; padding:0px;">
-                        <br>
-                        <form action="login_process.php" method="POST">
-                            <div style="text-align: center;">
+                <div class="p-0 d-flex justify-content-center" style="height:500px;width: 444px; padding:0px;">
+                    <div style="text-align: center;">
+                        <form action="login_process.php" method="POST" style="margin-top: 60px;">
                             <h2 style="text-align: center;">LOGIN</h2>
                             <?php if (isset($_GET['error'])) { ?>
                                 <div class="alert alert-danger" style="width:320px; margin-top: 5px;height: 22px; font-size: 13px; padding: 0px;"><?php echo $_GET['error']; ?> </div>
@@ -41,10 +40,13 @@ unset($_SESSION['id']);
                                 </div>
                                 <button type="submit" name="login" class="btn btn-primary">Login</button>
                         </form>
-                            </div>
+                                <hr>
+                                <p>Don't have an account? Register now!</p>
+                                <a href="signup.php"><button name="login" class="btn btn-info">Register for an Account</button></a>
+                    </div>
                     </div>
         <div class="align-self-center p-0">
-            <img src="../images/croppedbg.jpg" style="height:444px; width:444px;margin:0px;">
+            <img src="../images/croppedbg.jpg" style="height:500px; width:444px;margin:0px;border-bottom-right-radius: 20px;border-top-right-radius: 20px;">
         </div>
                 </div>
 
