@@ -103,7 +103,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     </div>
 
   <!-- Content -->
-      <div id="content">
+      <div id="content" class="container">
           <br>
         <div class="container-fluid" id="content-container">
             <h2>Unassigned Tickets</h2>
@@ -145,7 +145,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 <td><?php echo $tickets['Content']; ?></td>
                 <td class="text-center"><?php echo $getassignedsupp['Name']; ?></td>
                 <td class="text-center"><?php echo $tickets['Date']; ?></td>
-                <td class="text-center"><a href="viewticketadmin.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><button class="btn btn-primary btn-mini "><i class="bi bi-eye-fill"></i></i></button></a>
+                <td class="text-center"><a href="viewticketadmin.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><i class="bi bi-eye-fill text-primary"></i></a>
                 </td>
                 </tr>
 

@@ -102,7 +102,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     $chosenTicket = mysqli_fetch_array($getTickets)
     ?>
   <!-- Content -->
-      <div id="content">
+      <div id="content" class="container">
           <br>
         <div class="container-fluid" id="content-container">
             <h2>View Ticket</h2>

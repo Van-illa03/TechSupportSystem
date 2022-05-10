@@ -98,7 +98,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     </div>
 
   <!-- Content -->
-      <div id="content">
+      <div id="content" class="container">
           <br>
         <div class="container-fluid" id="content-container">
             <h2>Closed Tickets</h2>
@@ -112,16 +112,25 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                     <th scope="col">Category</th>
                     <th scope="col">Status</th>
                     <th scope="col">Content</th>
-                    <th scope="col">Personnel ID</th>
+                    <th scope="col">Assigned Personnel</th>
                     <th scope="col">Date</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
             <?php
+
             $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE Personnel_ID='$currentuser' AND Status='Closed';");
 
-            while($tickets = mysqli_fetch_array($getTickets)){ ?>
+            while($tickets = mysqli_fetch_array($getTickets)){
+                $assignedsupp = $tickets['Personnel_ID'];
+                if ($assignedsupp == 0){
+                    $getassignedsupp['Name']="None";
+                } else {
+                    $fetchassignedsupp = mysqli_query($con,"SELECT Name FROM supportteam WHERE UID='$assignedsupp'");
+                    $getassignedsupp = mysqli_fetch_assoc($fetchassignedsupp);
+                }
+                ?>
                 <tr>
                     <td class="text-center"> <?php echo $tickets['TID'];?></td>
                 <td class="text-center"><?php echo $tickets['Sender_ID']; ?></td>
@@ -130,9 +139,9 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 <td class="text-center"><?php echo $tickets['Category']; ?></td>
                 <td class="text-center"><?php echo $tickets['Status']; ?></td>
                 <td><?php echo $tickets['Content']; ?></td>
-                <td class="text-center"><?php echo $tickets['Personnel_ID']; ?></td>
+                <td class="text-center"><?php echo $getassignedsupp['Name']; ?></td>
                 <td class="text-center"><?php echo $tickets['Date']; ?></td>
-                <td class="text-center"><a href="viewticketsupport.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><button class="btn btn-primary btn-mini "><i class="bi bi-eye-fill"></i></i></button></a>
+                <td class="text-center"><a href="viewticketsupport.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><i class="bi bi-eye-fill text-primary"></i></a>
                 </td>
 
                 </tr>
