@@ -76,19 +76,19 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             <p></p>
         </header>
         <ul class="nav flex-column">
-            <li class="nav-item">
+            <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-ticket-detailed-fill" href="adminhomepage.php"> All Tickets</a>
             </li>
             <li class="nav-item " id="navblue">
                 <a class="nav-link  bi bi-ticket-perforated-fill "href="adminunassignedticket.php"> Unassigned Tickets</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-envelope-open-fill" href="adminopenticket.php"> Open</a>
             </li>
             <li class="nav-item" id="navblue">
                 <a class="nav-link bi bi-hourglass-split" href="adminpendingticket.php"> Pending</a>
             </li>
-            <li class="nav-item" >
+            <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-bookmark-check-fill" href="adminclosedticket.php"> Closed</a>
             </li>
         </ul>
