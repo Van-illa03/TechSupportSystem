@@ -111,7 +111,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 
 
             <div class="container">
-                <div class="card mx-auto" id="ticketcard">
+                <div class="card mx-auto" id="ticketcardintern">
                     <div class="card-header text-white" id="cardheader" style="background-color: #224375">
                         <div class="row">
                             <div class="col-7">
@@ -152,7 +152,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                                 <div class="col-2">
                                 </div>
                                 <div class="col-2">
-                                    <a href="delete.php?id=<?php echo $chosenTicket['TID'];?>" class="delete" title="Delete Ticket"><button class="btn btn-danger" type="submit" name="submit">Delete</button>
+                                    <a href="delete.php?id=<?php echo $chosenTicket['TID'];?>" class="btn btn-danger" title="Delete Ticket">Delete</a>
                                 </div>
                             </div>
                         </div>

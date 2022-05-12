@@ -15,7 +15,12 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
     $usertype = $_POST['usertype'];
+    $admincode = $_POST['ac'];
+    $supportcode = $_POST['sc'];
     $FilteringResult = false;
+
+    $codequery = mysqli_query($con,"SELECT * FROM codes");
+    $getcodes = mysqli_fetch_assoc($codequery);
 
 
     //verification of email format
@@ -24,15 +29,15 @@
         exit();
     }
 
-    if ($usertype === "Intern") {
+    if ($usertype == "Intern") {
         $Filtering = mysqli_query($con,"SELECT * FROM internuser WHERE Email='$email' LIMIT 1");
         $FilteringResult= mysqli_fetch_assoc($Filtering);
     }
-    else if ($usertype === "Support Team") {
+    else if ($usertype == "Support Team") {
         $Filtering = mysqli_query($con,"SELECT * FROM supportteam WHERE Email='$email' LIMIT 1");
         $FilteringResult= mysqli_fetch_assoc($Filtering);
     }
-    else if ($usertype === "Administrator") {
+    else if ($usertype == "Administrator") {
         $Filtering = mysqli_query($con,"SELECT * FROM administrator WHERE Email='$email' LIMIT 1");
         $FilteringResult = mysqli_fetch_assoc($Filtering);
     }
@@ -51,14 +56,29 @@
                 header("location: internhomepage.php");
             }
             else if ($usertype == "Administrator") {
-                //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
-                $_SESSION['id'] = $FilteringResult['UID'];
-                header("location: adminhomepage.php");
+                if (isset($admincode)){
+                    if ($getcodes['AdminCode'] == $admincode){
+                        //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
+                        $_SESSION['id'] = $FilteringResult['UID'];
+                        header("location: adminhomepage.php");
+                    }
+                    else {
+                        header("Location: login.php?error=Incorrect Admin Code.");
+                    }
+            }
+
             }
             else if ($usertype == "Support Team") {
-                //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
-                $_SESSION['id'] = $FilteringResult['UID'];
-                header("location: supporthomepage.php");
+                if (isset($supportcode)){
+                    if ($getcodes['SupportCode'] == $supportcode){
+                        //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
+                        $_SESSION['id'] = $FilteringResult['UID'];
+                        header("location: supporthomepage.php");
+                    }
+                    else {
+                        header("Location: login.php?error=Incorrect Support Code.");
+                    }
+                }
             }
          }
     }

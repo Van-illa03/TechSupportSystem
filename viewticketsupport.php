@@ -77,9 +77,6 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             <li class="nav-item">
                 <a class="nav-link bi bi-ticket-detailed-fill" href="supporthomepage.php"> All Tickets</a>
             </li>
-            <li class="nav-item " id="navblue">
-                <a class="nav-link  bi bi-ticket-perforated-fill "href="supportunassignedticket.php"> Unassigned Tickets</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link bi bi-envelope-open-fill" href="supportopenticket.php"> Open</a>
             </li>
@@ -109,7 +106,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 
 
             <div class="container">
-                <div class="card mx-auto" id="ticketcard">
+                <div class="card mx-auto" id="ticketcardsupport">
                     <div class="card-header text-white" id="cardheader" style="background-color: #224375">
                         <div class="row">
                             <div class="col-7">
@@ -196,7 +193,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                                     </select>
                                 </div>
                                 <div class="col-5 d-flex justify-content-end">
-                                    <button class="btn btn-primary" type="submit" name="submit">Save Changes</button>
+                                    <button class="btn btn-primary" type="submit" name="submit" style="height:40px; margin-top: 5px;">Save Changes</button>
                                 </div>
                             </div>
                         </div>

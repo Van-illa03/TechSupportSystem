@@ -97,10 +97,11 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     </div>
 
 <div class="container" id="content">
-    <br><br><br><br>
-    <div class="card mx-auto" id="ticketcard">
+    <br>
+    <h2>Create Ticket</h2>
+    <div class="card mx-auto" id="ticketcardintern">
         <div class="card-header text-white" id="cardheader" style="background-color: #224375">
-            Create Ticket
+            Ticket Details
         </div>
 
         <form action="ticketprocess.php" method="POST">
@@ -120,10 +121,11 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 </div>
             </div>
             <div class="mb-3">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" name="content"></textarea>
+                <textarea type="text" id="tickettextareaintern" class="form-control" rows="3" placeholder="Description" name="content"></textarea>
             </div>
 
             <div class="row mx-auto">
+
                 <div class="col-8">
                     <a></a>
                 </div>

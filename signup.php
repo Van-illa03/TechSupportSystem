@@ -13,21 +13,21 @@
 </head>
 
 
-<body class="loginBody">
+<body class="loginBody" onload="check()">
 
 
 <div class="container" style="background-color: white; margin-top: 75px; width: 870px;height: 500px; padding:0px;border-radius: 20px;">
     <div class="d-flex">
         <div class="p-0 d-flex justify-content-center" style="height:500px;width: 444px; padding:0px;">
          <div class="text-center">
-        <form action="signup_process.php" method="POST" style="margin-top: 20px;">
-            <h2>SIGN UP</h2>
+        <form action="signup_process.php" method="POST" style="margin-top: 10px;">
+            <h4>SIGN UP</h4>
 
-            <select class="form-select" aria-label="Default select example" id="selectsignup" name="usertype">
+            <select class="form-select" aria-label="Default select example" id="selectsignup" name="usertype" onChange="check();">
                 <center>
-                    <option value="Administrator">Administrator</option>
-                    <option value="Support Team">Support Team</option>
                     <option value="Intern" selected>Intern</option>
+                    <option value="Support Team">Support Team</option>
+                    <option value="Administrator">Administrator</option>
                 </center>
             </select>
                 <?php if (isset($_GET['error'])) { ?>
@@ -49,11 +49,35 @@
                             <option value="Visvis Logistics" selected>Visvis Logistics</option>
                         </center>
                     </select>
-<br>
+            <div class="d-flex flex-row justify-content-center">
+                <div class="p-2">
+                    <input type="password" class="form-control" id="susc" placeholder="Support Code" name="susc" style="width:130px;">
+                    <input type="password" class="form-control" id="suac" placeholder="Admin Code" name="suac" style="width:130px;">
+                </div>
+            </div>
                 <button type="submit" class="btn btn-primary" name="registerbtn">Register</button>
+            <script>
+                function check() {
+                    var dropdown = document.getElementById('selectsignup');
+                    var current_value = dropdown.options[dropdown.selectedIndex].value;
+
+                    if (current_value == "Support Team") {
+                        document.getElementById('susc').style.display = 'block';
+                        document.getElementById('suac').style.display = 'none';
+                    }
+                    else if (current_value == "Administrator"){
+                        document.getElementById('susc').style.display = 'none';
+                        document.getElementById('suac').style.display = 'block';
+                    }
+                    else {
+                        document.getElementById('susc').style.display = 'none';
+                        document.getElementById('suac').style.display = 'none';
+                    }
+                }
+            </script>
         </form>
-            <hr>
-            <p>Already have an account? Login now!</p>
+            <hr style="margin:9px;">
+            <p style="font-size: 12px; margin:6px;">Already have an account? Login now!</p>
             <a href="login.php"><button class="btn btn-info">Account Login</button></a>
         </div>
             </div>
