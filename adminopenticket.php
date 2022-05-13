@@ -97,6 +97,9 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 <a class="nav-link bi bi-bookmark-check-fill" href="adminclosedticket.php"> Closed</a>
             </li>
             <li class="nav-item" id="navblue">
+                <a class="nav-link bi bi-person-check-fill" href="adminviewsupports.php">  Support Personnel</a>
+            </li>
+            <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-shield-lock-fill" href="admingeneratecode.php"> Security Codes</a>
             </li>
         </ul>
