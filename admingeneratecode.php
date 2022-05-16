@@ -138,7 +138,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             <h2>Security Codes</h2>
 
             <div class="container">
-                <div class="card mx-auto" id="ticketcardadmin">
+                <div class="card mx-auto" id="ticketcardadmin" style="margin-bottom: 20px;">
                     <div class="card-header text-white" id="cardheader" style="background-color: #224375">
                         <div class="row">
                             <div class="col-6">
@@ -199,6 +199,5 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         </div>
       </div>
 </div>
-
 </body>
 </html>
