@@ -90,7 +90,9 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             <li class="nav-item" id="navblue">
                 <a class="nav-link bi bi-hourglass-split" href="creatingticket.php"> Create Ticket</a>
             </li>
-
+            <li class="nav-item" id="navwhite">
+                <a class="nav-link bi bi-trash-fill" href="internrecyclebin.php"> Recycle Bin</a>
+            </li>
         </ul>
     </div>
     </div>

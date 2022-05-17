@@ -110,7 +110,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     <div id="content" class="container">
         <br>
         <div class="container" id="content-container">
-            <h2>All Tickets</h2>
+            <h2>Ticket Recycle Bin</h2>
             <table class="table table-hover table-bordered table-striped" style="border-color:#224375" id="dtHorizontalExample" >
                 <thead>
                 <tr id="tableRow">
@@ -128,7 +128,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 </thead>
                 <tbody>
                 <?php
-                $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE Sender_ID='$currentuser'");
+                $getTickets = mysqli_query($con,"SELECT * FROM ticketbin WHERE Sender_ID='$currentuser'");
 
                 while($tickets = mysqli_fetch_assoc($getTickets)){
                     $assignedsupp = $tickets['Personnel_ID'];
@@ -149,11 +149,11 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                         <td><?php echo $tickets['Content']; ?></td>
                         <td class="text-center"><?php echo $getassignedsupp['Name']; ?></td>
                         <td class="text-center"><?php echo $tickets['Date']; ?></td>
-                        <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?>" class="delete" title="Delete Ticket"><i class="bi bi-trash text-danger"></i></a>
+                        <td class="text-center"><a href="permadelete.php?id=<?php echo $tickets['TID'];?>" class="delete" title="Delete Ticket"><i class="bi bi-trash text-danger"></i></a>
                             <a href="viewticket.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><i class="bi bi-eye-fill text-primary"></i></a>
+                            <a href="restoreticket.php?id=<?php echo $tickets['TID'];?>" class="View" title="Restore Ticket"><i class="bi bi-recycle text-success"></i></a>
                         </td>
                     </tr>
-
 
                     <?php
                 }

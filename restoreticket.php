@@ -10,7 +10,7 @@ session_start();
     $currentuser = $_SESSION['id'];
     $id=$_GET["id"];
 
-    $fetchquery = "SELECT * FROM tickets WHERE Sender_ID='$currentuser' AND TID='$id'";
+    $fetchquery = "SELECT * FROM ticketbin WHERE Sender_ID='$currentuser' AND TID='$id'";
     $executequery = mysqli_query($con,$fetchquery);
 
     $tickets = mysqli_fetch_assoc($executequery);
@@ -26,14 +26,14 @@ session_start();
     $personnelassigned = $tickets['Personnel_ID'];
 
 
-    $InsertTicket = "INSERT INTO ticketbin (TID,Sender_ID,Sender_Name, Sender_Email, Subject, Category, Content, Status, Date, Personnel_ID) 
+    $InsertTicket = "INSERT INTO tickets (TID,Sender_ID,Sender_Name, Sender_Email, Subject, Category, Content, Status, Date, Personnel_ID) 
                       VALUES('$ticketID','$currentuser','$sender','$sender_email','$subject','$category','$content','$status','$date','$personnelassigned')";
     mysqli_query($con, $InsertTicket);
 
-    $delquery = "DELETE FROM tickets WHERE Sender_ID='$currentuser' AND TID='$id' LIMIT 1;";
+    $delquery = "DELETE FROM ticketbin WHERE Sender_ID='$currentuser' AND TID='$id' LIMIT 1;";
     mysqli_query($con,$delquery);
 ?>
 <script type="text/javascript">
-    alert('Ticket deleted and was moved to recycle bin.');
+    alert('Ticket restored.');
     window.location="internhomepage.php";
 </script>
