@@ -150,7 +150,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                         <td class="text-center"><?php echo $getassignedsupp['Name']; ?></td>
                         <td class="text-center"><?php echo $tickets['Date']; ?></td>
                         <td class="text-center"><a href="permadelete.php?id=<?php echo $tickets['TID'];?>" class="delete" title="Delete Ticket"><i class="bi bi-trash text-danger"></i></a>
-                            <a href="viewticket.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><i class="bi bi-eye-fill text-primary"></i></a>
+                            <a href="viewrecycledticket.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><i class="bi bi-eye-fill text-primary"></i></a>
                             <a href="restoreticket.php?id=<?php echo $tickets['TID'];?>" class="View" title="Restore Ticket"><i class="bi bi-recycle text-success"></i></a>
                         </td>
                     </tr>
