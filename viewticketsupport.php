@@ -20,6 +20,7 @@ $currentuser = $_SESSION['id'];
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </style>
 </head>
 
@@ -157,10 +158,27 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                             </div>
                             <div class="mb-3">
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" name="content" disabled><?php echo $chosenTicket['Content'];?></textarea>
-                                <hr>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Personnel Notes/Comments" name="note" ><?php echo $chosenTicket['Note'];?></textarea>
+                                <br>
+                                <h5>Personnel Notes</h5>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter your notes/comments" name="note" ><?php echo $chosenTicket['Note'];?></textarea>
                             </div>
+                            <div class="row mx-auto">
+                                <hr style="height:2px; color:black;">
+                                <div class="p-0 d-flex align-items-center">
+                                    <h5>Initiate Email</h5>
+                                    <input type="radio" id="yesemail" name="emailinit" style="margin-left: 10px; margin-right: 5px; margin-top:-3px;" value="yes" checked="true">
+                                    <label for="yesemail" style="margin-top: -3px;">Yes</label>
+                                    <input type="radio" id="noemail" name="emailinit" style="margin-left: 10px; margin-right: 5px; margin-top:-3px;" value="no" >
+                                    <label for="noemail" style="margin-top: -3px;">No</label>
+                                </div>
+                                <div class="d-flex p-0 align-items-center">
+                                    <p style="margin-top: 10px; font-size: 15px;" id="emaillabel">Recipient:</p><input type="email" class="form-control" id="emailto" rows="1" placeholder="Receipient Email" name="emailto" style="height:40px; width: 200px; margin-left: 10px;">
+                                    <p style="margin-top: 10px; margin-left: 20px; font-size: 15px;" id="emailsubj">Subject:</p><input type="text" class="form-control" id="subject" rows="1" placeholder="Email Subject" name="subject" style="height:40px; width: 260px; margin-left: 10px;">
+                                </div>
 
+                                <textarea class="form-control" id="emailcontent" rows="3" placeholder="Enter Email Content Here" name="emailcontent"></textarea>
+                            </div>
+                            <br>
                             <div class="row mx-auto">
                                 <div class="col-7 d-flex justify-content-start">
                                     <p style="margin-top:10px; margin-right:8px;">Re-assign to:   </p>
@@ -204,6 +222,30 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         </div>
       </div>
 </div>
+<script>
 
+    $('input[type=radio]').click(function(e) {//jQuery works on clicking radio box
+        var value = $(this).val(); //Get the clicked checkbox value
+        if (value == "yes"){
+            document.getElementById('emailto').style.display = 'block';
+            document.getElementById('emailcontent').style.display = 'block';
+            document.getElementById('emaillabel').style.display = 'block';
+            document.getElementById('subject').style.display = 'block';
+            document.getElementById('emailsubj').style.display = 'block';
+        }
+        else {
+            document.getElementById('emailto').style.display = 'none';
+            document.getElementById('emailcontent').style.display = 'none';
+            document.getElementById('emaillabel').style.display = 'none';
+            document.getElementById('subject').style.display = 'none';
+            document.getElementById('emailsubj').style.display = 'none';
+        }
+    });
+
+    const name =  document.getElementById('emailto');
+
+    // setting the value
+    name.value = "<?php echo $chosenTicket['Sender_Email']; ?>";
+</script>
 </body>
 </html>
