@@ -13,9 +13,49 @@ session_start();
     $tid=$_GET["tid"];
     $chosenuser = $_POST['supportuser'];
     $tixstatus = $_POST['ticketstatus'];
-    $note = $_POST['note'];
+    $note = trim($_POST['note']);
+
+    $currentticketquery = "SELECT * FROM tickets WHERE TID='$tid'";
+    $fetchcurrentticket = mysqli_query($con,$currentticketquery);
+
+    $currentticket = mysqli_fetch_assoc($fetchcurrentticket);
+    $fetchednote = trim($currentticket['Note']);
+    $fetchedstatus = $currentticket['Status'];
+    $fetchedSenderID = $currentticket['Sender_ID'];
+
+
 
     if (isset($_POST['submit'])){
+        //comparing notes from db and submitted form
+        if ($fetchednote == null){ //if note from db is null
+            if ($note != null){ //if note from form is not null
+                $NotifContent = "The support team added notes on your ticket (Ticket no. ".$tid.").\n";
+            }
+            else {
+                //no arg
+            }
+        } else {
+
+        //comparing ticket status from db and submitted form
+        if ($fetchednote == $note) {
+                //no arg
+            }
+            else {
+                $NotifContent = "The support team updated your ticket (Ticket no. ".$tid.").\n";
+            }
+        }
+
+        if($fetchedstatus != $tixstatus){
+            $status = "Ticket status changed from ".$fetchedstatus." to ".$tixstatus;
+            $NotifContent .= $status;
+        }
+
+        if ($NotifContent != null) {
+            $InsertNotif = "INSERT INTO notifications (TID,Ticket_Owner,Content,ViewStatus) 
+                      VALUES('$tid','$fetchedSenderID','$NotifContent',0)";
+            mysqli_query($con, $InsertNotif);
+        }
+
 
         $UpdateTicket = "UPDATE tickets SET Personnel_ID='$chosenuser',Status='$tixstatus',Note='$note' WHERE TID='$tid'";
         mysqli_query($con, $UpdateTicket);

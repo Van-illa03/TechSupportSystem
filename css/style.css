@@ -40,6 +40,33 @@ a.nav-link {
    margin-top: 14px;
 }
 
+#notifdropdown {
+   width:350px;
+   margin-left:-300px;
+   padding-left:5px;
+   padding-right: 5px;
+
+}
+
+.dropdown-divider {
+   width: 340px;
+}
+
+#dropdownitems {
+   text-overflow: ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
+   font-size: 12px;
+}
+
+#dropdownitems:hover {
+}
+
+#notifications{
+   color: white;
+   margin-top: 14px;
+}
+
 #logo{
    padding-right: 10px !important;
    width: 75px;
@@ -276,6 +303,16 @@ table td {
    margin-top:7px;
 }
 
+#notifications .badge {
+   position: absolute;
+   top: 12px;
+   right: 0px;
+   padding: 3px 7px;
+   border-radius: 50%;
+   background: red;
+   color: white;
+   display: block;
+}
 
 
 

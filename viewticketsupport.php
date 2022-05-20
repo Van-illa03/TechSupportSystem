@@ -29,6 +29,7 @@ $currentuser = $_SESSION['id'];
 //query on getting the information of the current user that matches the id on the $currentuser variable
 $userquery = mysqli_query($con,"SELECT * FROM supportteam WHERE UID='$currentuser'");
 $getcurrentuser = mysqli_fetch_assoc($userquery);
+
 ?>
 <nav class="navbar navbar-expand-sm">
     <div class="container-fluid">
@@ -47,12 +48,11 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             <li class="nav-item">
                 <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
             </li>
-            <li class="nav-item">
+            <li class="nav-item d-flex justify-content-center">
                 <div class="dropdown">
                     <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
                     </ul>
                 </div>

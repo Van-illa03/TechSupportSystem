@@ -52,12 +52,41 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             <li class="nav-item">
                 <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
             </li>
-            <li class="nav-item">
+            <li class="nav-item d-flex justify-content-center">
+                <div class="dropdown">
+                    <?php
+                    $notifquery = mysqli_query($con,"SELECT * FROM notifications WHERE Ticket_Owner='$currentuser'");
+                    $viewcounter = 0;
+
+                    while ($getnotifications = mysqli_fetch_assoc($notifquery)) {
+                        if ($getnotifications['ViewStatus'] == 0) {
+                            $viewcounter += 1;
+                        }
+                    }
+                    ?>
+                    <button class="btn bi bi-bell" type="button" id="notifications" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="badge" style="font-size: 9px;" id="badge">!</span>
+                    </button>
+                    <script>
+
+                    </script>
+
+                    <ul class="dropdown-menu" id="notifdropdown" aria-labelledby="notifications">
+                        <b><li style="margin-left: 5px;">Notifications</li></b>
+                        <?php
+                        $notifquery2 = mysqli_query($con,"SELECT * FROM notifications WHERE Ticket_Owner='$currentuser'");
+
+                        while ($getnotifications1 = mysqli_fetch_assoc($notifquery2)) {
+                            ?>
+                            <div class="dropdown-divider"></div>
+                            <li><a class="dropdown-item" id="dropdownitems" href="viewticket.php?id=<?php echo $getnotifications1['TID']?>" title="<?php echo $getnotifications1['Content']?>  Click to view."><?php echo $getnotifications1['Content']?></a></li>
+                        <?php } ?>
+                    </ul>
+                </div>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
                     </ul>
                 </div>
@@ -168,6 +197,14 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         });
 
         $('.dataTables_length').addClass('bs-select');
+
+        var viewcount = "<?php echo $viewcounter ?>";
+
+        if (viewcount !== "0") {
+            document.getElementById('badge').style.display = 'block';
+        } else {
+            document.getElementById('badge').style.display = 'none';
+        }
     });
 </script>
 </body>
