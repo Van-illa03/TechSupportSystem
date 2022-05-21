@@ -43,23 +43,33 @@ a.nav-link {
 #notifdropdown {
    width:350px;
    margin-left:-300px;
-   padding-left:5px;
-   padding-right: 5px;
 
 }
 
 .dropdown-divider {
    width: 340px;
+   margin-top:0px;
+   padding-top:0px;
 }
 
-#dropdownitems {
+.dropdown-item {
    text-overflow: ellipsis;
    overflow: hidden;
    white-space: nowrap;
-   font-size: 12px;
+   font-size: 13px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   margin-top: 1px;
+   margin-botom: 1px;
+
+}
+
+#logout {
+   font-size: 15px;
 }
 
 #dropdownitems:hover {
+   background-color: #F2F2F2;
 }
 
 #notifications{
@@ -313,6 +323,7 @@ table td {
    color: white;
    display: block;
 }
+
 
 
 

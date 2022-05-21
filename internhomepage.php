@@ -59,6 +59,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                     $notifquery = mysqli_query($con,"SELECT * FROM notifications WHERE Ticket_Owner='$currentuser'");
                     $viewcounter = 0;
 
+
                     while ($getnotifications = mysqli_fetch_assoc($notifquery)) {
                         if ($getnotifications['ViewStatus'] == 0) {
                             $viewcounter += 1;
@@ -66,22 +67,53 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                     }
                     ?>
                     <button class="btn bi bi-bell" type="button" id="notifications" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="badge" style="font-size: 9px;" id="badge">!</span>
+                        <span class="badge" style="font-size: 9px;" id="badge"><?php echo $viewcounter; ?></span>
                     </button>
                     <script>
 
                     </script>
 
                     <ul class="dropdown-menu" id="notifdropdown" aria-labelledby="notifications">
-                        <b><li style="margin-left: 5px;">Notifications</li></b>
+                        <b><li style="margin-left: 10px; margin-bottom: 5px; font-size: 20px;">Notifications</li></b>
                         <?php
                         $notifquery2 = mysqli_query($con,"SELECT * FROM notifications WHERE Ticket_Owner='$currentuser'");
-
+                        $ctr = 1;
                         while ($getnotifications1 = mysqli_fetch_assoc($notifquery2)) {
-                        ?>
-                        <div class="dropdown-divider"></div>
-                        <li><a class="dropdown-item" id="dropdownitems" href="viewticket.php?id=<?php echo $getnotifications1['TID']?>" title="<?php echo $getnotifications1['Content']?>  Click to view."><?php echo $getnotifications1['Content']?></a></li>
-                        <?php } ?>
+                            ?>
+                            <li><a class="dropdown-item" id="dropdownitems<?php echo $ctr?>" href="notifviewticket.php?ntid=<?php echo $getnotifications1['NID']?>&id=<?php echo $getnotifications1['TID']?>" title="<?php echo $getnotifications1['Content']?>  Click to view."><?php echo $getnotifications1['Content']?></a></li>
+                            <!--php code for dropdown items bg color and hover bg color-->
+                            <?php
+                            $zerostring = "0";
+                            $viewholder = $getnotifications1['ViewStatus'];
+                            echo "<script>
+                        var viewreader ='$viewholder';
+                        var zerostring = '$zerostring';
+
+                    if (viewreader == zerostring) {
+                        document.getElementById('dropdownitems'+'$ctr').style.backgroundColor = '#E8F9FD';
+                        
+                        //hovers
+                        document.getElementById('dropdownitems'+'$ctr').onmouseover = function() {
+                        document.getElementById('dropdownitems'+'$ctr').style.backgroundColor = '#F2F2F2';
+                        };
+                        document.getElementById('dropdownitems'+'$ctr').onmouseout = function() {
+                        document.getElementById('dropdownitems'+'$ctr').style.backgroundColor = '#E8F9FD';
+                        };
+                    } else {
+                    document.getElementById('dropdownitems'+'$ctr').style.backgroundColor = 'white';
+                    
+                    //hovers
+                        document.getElementById('dropdownitems'+'$ctr').onmouseover = function() {
+                        document.getElementById('dropdownitems'+'$ctr').style.backgroundColor = '#F2F2F2';
+                        };
+                        document.getElementById('dropdownitems'+'$ctr').onmouseout = function() {
+                        document.getElementById('dropdownitems'+'$ctr').style.backgroundColor = 'white';
+                        };
+                    }
+                    
+                    </script>";
+                            $ctr++;
+                        } ?>
                     </ul>
                 </div>
                 <div class="dropdown">
@@ -205,7 +237,10 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         } else {
             document.getElementById('badge').style.display = 'none';
         }
+
     });
+
+
 </script>
 </body>
 </html>
