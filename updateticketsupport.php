@@ -1,6 +1,7 @@
 <?php
 require ("PHPMailer/src/PHPMailer.php");
 require ("PHPMailer/src/SMTP.php");
+require_once('PHPMailer/src/Exception.php');
 
 //database connection
 $con=mysqli_connect("localhost","root","","techsupportsystem");
