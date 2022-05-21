@@ -1,7 +1,7 @@
 <?php
 require ("PHPMailer/src/PHPMailer.php");
 require ("PHPMailer/src/SMTP.php");
-require_once('PHPMailer/src/Exception.php');
+require ('PHPMailer/src/Exception.php');
 
 //database connection
 $con=mysqli_connect("localhost","root","","techsupportsystem");
@@ -76,7 +76,6 @@ session_start();
             $mail->Host = "smtp.gmail.com";
             $mail->SMTPAuth = true;
 
-            //if you happen to create new smtp2go account, you can input the new username and password you provided in their dashboard.
             $mail->Username = "uiptechsuppsys@gmail.com";
             $mail->Password = "uiptechsuppadmin1";
             $mail->SMTPSecure = "tls";
@@ -94,9 +93,10 @@ session_start();
             }
             else {
                 echo "Email has been sent";
+                header('location: supporthomepage.php');
             }
         }
 
-        header('location: supporthomepage.php');
+
     }
 ?>
