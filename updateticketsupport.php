@@ -76,8 +76,8 @@ session_start();
             $mail->Host = "smtp.gmail.com";
             $mail->SMTPAuth = true;
 
-            $mail->Username = "uiptechsuppsys@gmail.com";
-            $mail->Password = "uiptechsuppadmin1";
+            $mail->Username = "techsuppsysUIP@gmail.com";
+            $mail->Password = "UIPtechsuppsystem";
             $mail->SMTPSecure = "tls";
             $mail->Port = "587";
             $mail->From = "techsupport@melhamconstruction.ph";
