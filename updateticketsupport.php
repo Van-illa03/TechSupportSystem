@@ -15,6 +15,7 @@ session_start();
     $chosenuser = $_POST['supportuser'];
     $tixstatus = $_POST['ticketstatus'];
     $note = trim($_POST['note']);
+    $date = $_POST['timeStamp'];
 
     $currentticketquery = "SELECT * FROM tickets WHERE TID='$tid'";
     $fetchcurrentticket = mysqli_query($con,$currentticketquery);
@@ -47,13 +48,13 @@ session_start();
         }
 
         if($fetchedstatus != $tixstatus){
-            $status = "Ticket status changed from ".$fetchedstatus." to ".$tixstatus;
+            $status = "Ticket status changed from ".$fetchedstatus." to ".$tixstatus.".";
             $NotifContent .= $status;
         }
 
         if ($NotifContent != null) {
-            $InsertNotif = "INSERT INTO notifications (TID,Ticket_Owner,Content,ViewStatus) 
-                      VALUES('$tid','$fetchedSenderID','$NotifContent',0)";
+            $InsertNotif = "INSERT INTO notifications (TID,Ticket_Owner,Content,ViewStatus,date) 
+                      VALUES('$tid','$fetchedSenderID','$NotifContent',0,'$date')";
             mysqli_query($con, $InsertNotif);
         }
 
@@ -77,7 +78,7 @@ session_start();
             $mail->SMTPAuth = true;
 
             $mail->Username = "techsuppsysUIP@gmail.com";
-            $mail->Password = "UIPtechsuppsystem";
+            $mail->Password = "quetzalcoatl";
             $mail->SMTPSecure = "tls";
             $mail->Port = "587";
             $mail->From = "techsupport@melhamconstruction.ph";
@@ -95,6 +96,8 @@ session_start();
                 echo "Email has been sent";
                 header('location: supporthomepage.php');
             }
+        } else {
+            header('location: supporthomepage.php');
         }
 
 

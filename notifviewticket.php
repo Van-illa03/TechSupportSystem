@@ -85,7 +85,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                         $ctr = 1;
                         while ($getnotifications1 = mysqli_fetch_assoc($notifquery2)) {
                             ?>
-                            <li><a class="dropdown-item" id="dropdownitems<?php echo $ctr?>" href="notifviewticket.php?ntid=<?php echo $getnotifications1['NID']?>&id=<?php echo $getnotifications1['TID']?>" title="<?php echo $getnotifications1['Content']?>  Click to view."><?php echo $getnotifications1['Content']?></a></li>
+                            <li><a class="dropdown-item" id="dropdownitems<?php echo $ctr?>" href="notifviewticket.php?ntid=<?php echo $getnotifications1['NID']?>&id=<?php echo $getnotifications1['TID']?>" title="<?php echo $getnotifications1['Content']?>  Click to view."><?php echo $getnotifications1['Content']?><p id="datetext"><?php echo $getnotifications1['date']?></p></a></li>
                             <!--php code for dropdown items bg color and hover bg color-->
                             <?php
                             $zerostring = "0";

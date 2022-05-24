@@ -52,13 +52,15 @@ a.nav-link {
    padding-top:0px;
 }
 
+#datetext {
+   font-size: 10px;
+}
+
 .dropdown-item {
    text-overflow: ellipsis;
    overflow: hidden;
    white-space: nowrap;
    font-size: 13px;
-   padding-top: 10px;
-   padding-bottom: 10px;
    margin-top: 1px;
    margin-botom: 1px;
 

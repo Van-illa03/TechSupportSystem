@@ -224,6 +224,39 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 </div>
 <script>
 
+    // Script for timestamp
+    function getDateTime() {
+        var now     = new Date();
+        var year    = now.getFullYear();
+        var month   = now.getMonth()+1;
+        var day     = now.getDate();
+        var hour    = now.getHours();
+        var minute  = now.getMinutes();
+        var second  = now.getSeconds();
+        if(month.toString().length == 1) {
+            month = '0'+month;
+        }
+        if(day.toString().length == 1) {
+            day = '0'+day;
+        }
+        if(hour.toString().length == 1) {
+            hour = '0'+hour;
+        }
+        if(minute.toString().length == 1) {
+            minute = '0'+minute;
+        }
+        if(second.toString().length == 1) {
+            second = '0'+second;
+        }
+        var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;
+
+        return dateTime;
+    }
+    setInterval(function(){
+        let currentTime = getDateTime();
+        document.getElementById("current-date-time").value = currentTime;
+    }, 1000);
+
     $('input[type=radio]').click(function(e) {//jQuery works on clicking radio box
         var value = $(this).val(); //Get the clicked checkbox value
         if (value == "yes"){
