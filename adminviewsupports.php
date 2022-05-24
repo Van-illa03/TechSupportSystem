@@ -133,7 +133,8 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 <td class="text-center"><?php echo $supportusers['Name']; ?></td>
                 <td class="text-center"><?php echo $supportusers['Email']; ?></td>
                 <td><?php echo $supportusers['Company']; ?></td>
-                <td class="text-center"><a href="deletesupportpersonnel.php?id=<?php echo $supportusers['UID'];?>" class="View" title="Delete Personnel"><i class="bi bi-trash text-danger"></i></a>
+                <td class="text-center">
+                    <a href="deletesupportpersonnel.php?id=<?php echo $supportusers['UID'];?>" class="View" title="Delete Personnel"><i class="bi bi-trash text-danger"></i></a>
                 </td>
                 </tr>
                 <?php

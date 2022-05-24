@@ -66,6 +66,15 @@ a.nav-link {
 
 }
 
+#deletenotiflink {
+   margin-top:18px;
+   margin-right: 9px;
+}
+
+#deletenotif:hover {
+   color:red;
+}
+
 #logout {
    font-size: 15px;
 }

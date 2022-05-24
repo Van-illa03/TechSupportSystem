@@ -73,11 +73,11 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                     <ul class="dropdown-menu" id="notifdropdown" aria-labelledby="notifications">
                         <b><li style="margin-left: 10px; margin-bottom: 5px; font-size: 20px;">Notifications</li></b>
                         <?php
-                        $notifquery2 = mysqli_query($con,"SELECT * FROM notifications WHERE Ticket_Owner='$currentuser'");
+                        $notifquery2 = mysqli_query($con,"SELECT * FROM notifications WHERE Ticket_Owner='$currentuser'  ORDER BY NID DESC");
                         $ctr = 1;
                         while ($getnotifications1 = mysqli_fetch_assoc($notifquery2)) {
                             ?>
-                            <li><a class="dropdown-item" id="dropdownitems<?php echo $ctr?>" href="notifviewticket.php?ntid=<?php echo $getnotifications1['NID']?>&id=<?php echo $getnotifications1['TID']?>" title="<?php echo $getnotifications1['Content']?>  Click to view."><?php echo $getnotifications1['Content']?><p id="datetext"><?php echo $getnotifications1['date']?></p></a></li>
+                            <li class="d-flex justify-content-center" id="dropdownitems<?php echo $ctr?>"><a class="dropdown-item" href="notifviewticket.php?ntid=<?php echo $getnotifications1['NID']?>&id=<?php echo $getnotifications1['TID']?>" title="<?php echo $getnotifications1['Content']?>  Click to view."><?php echo $getnotifications1['Content']?><p id="datetext"><?php echo $getnotifications1['date']?></p></a><a href="deletenotif.php?nid=<?php echo $getnotifications1['NID']; ?>" title="Delete notification" id="deletenotiflink"><i class="bi bi-x-lg" id="deletenotif"></i></a></li>
                             <!--php code for dropdown items bg color and hover bg color-->
                             <?php
                             $zerostring = "0";
