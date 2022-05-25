@@ -15,6 +15,9 @@ $currentuser = $_SESSION['id'];
     $UpdateTicket = "UPDATE tickets SET Personnel_ID='$zero' WHERE Personnel_ID='$id'";
     mysqli_query($con, $UpdateTicket);
 
+    $UpdateTicket = "UPDATE ticketbin SET Personnel_ID='$zero' WHERE Personnel_ID='$id'";
+    mysqli_query($con, $UpdateTicket);
+
     $delquery = "DELETE FROM supportteam WHERE UID='$id' LIMIT 1;";
     mysqli_query($con,$delquery);
 ?>

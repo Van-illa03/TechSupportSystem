@@ -134,7 +134,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 <td class="text-center"><?php echo $supportusers['Email']; ?></td>
                 <td><?php echo $supportusers['Company']; ?></td>
                 <td class="text-center">
-                    <a href="deletesupportpersonnel.php?id=<?php echo $supportusers['UID'];?>" class="View" title="Delete Personnel"><i class="bi bi-trash text-danger"></i></a>
+                    <a onclick="confirmation()" href="deletesupportpersonnel.php?id=<?php echo $supportusers['UID'];?>" class="View" title="Delete Personnel"><i class="bi bi-trash text-danger"></i></a>
                 </td>
                 </tr>
                 <?php
@@ -150,6 +150,14 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     $(document).ready(function (){
         $('table').DataTable();
     });
+
+    function confirmation() {
+        var result = confirm('You are about to delete this user. Are you sure?');
+
+        if (result == false) {
+            event.preventDefault();
+        }
+    }
 </script>
 </body>
 </html>

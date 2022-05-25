@@ -122,7 +122,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                     <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item "href="internprofile.php" id="profile">Profile</a></li>
+                        <li><a class="dropdown-item "href="#" id="profile">Profile</a></li>
                         <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
                     </ul>
                 </div>
@@ -174,65 +174,58 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     <div id="content" class="container">
         <br>
         <div class="container" id="content-container">
-            <h2>All Tickets</h2>
-            <table class="table table-hover table-bordered table-striped" style="border-color:#224375" id="dtHorizontalExample" >
-                <thead>
-                <tr id="tableRow">
-                    <th scope="col">Ticket ID</th>
-                    <th scope="col">Sender ID</th>
-                    <th scope="col">Sender Name</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Content</th>
-                    <th scope="col">Personnel Assigned</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE Sender_ID='$currentuser'");
+            <h2>User Profile</h2>
+            <form action="updateinterninfo.php?id=<?php echo $getcurrentuser['UID']?>" method="POST">
+                <div class="container" style="background-color: white;padding:10px; width: 470px; margin-bottom: 80px;" id="profilecontainer">
+                    <i class="bi bi-person-fill d-flex justify-content-center" id="profileicon"></i>
+                    <div class="container" style="margin-top: 15px; padding-left: 10px;">
+                        <div class="d-flex justify-content-left" style="margin-top: 10px;">
+                            <h6 style="margin-right: 124px;">Name </h6>
+                            <h6 style="margin-right: 40px;">:</h6>
+                            <textarea type="text" style="height:30px; width: 190px;" name="name"><?php echo $getcurrentuser['Name']; ?></textarea>
+                        </div>
+                        <div class="d-flex justify-content-left" style="margin-top: 10px;">
+                            <h6 style="margin-right: 128px;">Email </h6>
+                            <h6 style="margin-right: 40px;">:</h6>
+                            <h6><?php echo $getcurrentuser['Email']; ?></h6>
+                        </div>
+                        <div class="d-flex justify-content-left" style="margin-top: 10px;">
+                            <h6 style="margin-right: 98px;">Company </h6>
+                            <h6 style="margin-right: 40px;">:</h6>
+                            <h6><?php echo $getcurrentuser['Company']; ?></h6>
+                        </div>
+                        <hr>
+                        <div class="d-flex align-items-center">
+                            <h5>Change Password</h5>
+                            <input type="radio" id="yeschange" name="passchange" style="margin-left: 10px; margin-right: 5px; margin-top:-3px;" value="yes">
+                            <label for="yesemail" style="margin-top: -3px;">Yes</label>
+                            <input type="radio" id="nochange" name="passchange" style="margin-left: 10px; margin-right: 5px; margin-top:-3px;" value="no" checked="true">
+                            <label for="noemail" style="margin-top: -3px;">No</label>
+                            <p style="margin-left: 5px; margin-right: 5px; margin-top:12px;font-size: 12px;">(choose "No" if not)</p>
+                        </div>
+                        <div class="d-flex justify-content-left" style="margin-top: 10px;">
+                            <h6 style="margin-right: 40px; display: none;" id="cplabel">Current Password </h6>
+                            <h6 style="margin-right: 40px; display: none;" id="cpcolon">:</h6>
+                            <input type="password" placeholder="Current Password" name="currentpass" id="currentpass" style="height: 30px; display: none;">
+                        </div>
+                        <div class="d-flex justify-content-left" style="margin-top: 10px;">
+                            <h6 style="margin-right: 62px; display: none;" id="nplabel">New Password </h6>
+                            <h6 style="margin-right: 40px; display: none;" id="npcolon">:</h6>
+                            <input type="password" placeholder="New Password" name="newpass" id="newpass" style="height: 30px; display: none;">
+                        </div>
+                        <div class="d-flex justify-content-center" style="margin-top: 20px;">
+                            <button class="btn btn-success" type="submit" name="submit">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
-                while($tickets = mysqli_fetch_assoc($getTickets)){
-                    $assignedsupp = $tickets['Personnel_ID'];
-                    if ($assignedsupp == 0){
-                        $getassignedsupp['Name']="None";
-                    } else {
-                        $fetchassignedsupp = mysqli_query($con,"SELECT Name FROM supportteam WHERE UID='$assignedsupp'");
-                        $getassignedsupp = mysqli_fetch_assoc($fetchassignedsupp);
-                    }
-                    ?>
-                    <tr>
-                        <td class="text-center"> <?php echo $tickets['TID'];?></td>
-                        <td class="text-center"><?php echo $tickets['Sender_ID']; ?></td>
-                        <td class="text-center"><?php echo $tickets['Sender_Name']; ?></td>
-                        <td><?php echo $tickets['Subject']; ?></td>
-                        <td class="text-center"><?php echo $tickets['Category']; ?></td>
-                        <td class="text-center"><?php echo $tickets['Status']; ?></td>
-                        <td><?php echo $tickets['Content']; ?></td>
-                        <td class="text-center"><?php echo $getassignedsupp['Name']; ?></td>
-                        <td class="text-center"><?php echo $tickets['Date']; ?></td>
-                        <td class="text-center"><a href="delete.php?id=<?php echo $tickets['TID'];?>" class="delete" title="Delete Ticket"><i class="bi bi-trash text-danger"></i></a>
-                            <a href="viewticket.php?id=<?php echo $tickets['TID'];?>" class="View" title="View Ticket"><i class="bi bi-eye-fill text-primary"></i></a>
-                        </td>
-                    </tr>
 
 
-                    <?php
-                }
-                ?>
-                </tbody>
-            </table>
         </div>
     </div>
 <script>
     $(document).ready(function (){
-        $('table').DataTable({
-        });
-
-        $('.dataTables_length').addClass('bs-select');
-
         var viewcount = "<?php echo $viewcounter ?>";
 
         if (viewcount !== "0") {
@@ -240,10 +233,27 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         } else {
             document.getElementById('badge').style.display = 'none';
         }
-
     });
 
-
+    $('input[type=radio]').click(function(e) {//jQuery works on clicking radio box
+        var value = $(this).val(); //Get the clicked checkbox value
+        if (value == "yes"){
+            document.getElementById('currentpass').style.display = 'block';
+            document.getElementById('newpass').style.display = 'block';
+            document.getElementById('cplabel').style.display = 'block';
+            document.getElementById('cpcolon').style.display = 'block';
+            document.getElementById('nplabel').style.display = 'block';
+            document.getElementById('npcolon').style.display = 'block';
+        }
+        else {
+            document.getElementById('currentpass').style.display = 'none';
+            document.getElementById('newpass').style.display = 'none';
+            document.getElementById('cplabel').style.display = 'none';
+            document.getElementById('cpcolon').style.display = 'none';
+            document.getElementById('nplabel').style.display = 'none';
+            document.getElementById('npcolon').style.display = 'none';
+        }
+    });
 </script>
 </body>
 </html>
