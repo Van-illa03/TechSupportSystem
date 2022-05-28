@@ -142,7 +142,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 
                             <div class="row mx-auto">
                                 <div class="col-7 d-flex justify-content-start">
-                                    <h6 style="margin-top:7px; margin-right:5px;">Assigned to:  </h6>
+                                    <h6 style="margin-top:12px; margin-right:5px;">Assigned to:  </h6>
                                     <select class="form-select" aria-label="Default select example" id="selectsupport" name="supportuser">
                                         <?php
                                         $currentsupport = $chosenTicket['Personnel_ID'];

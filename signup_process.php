@@ -87,21 +87,24 @@
         $RegisterUser = "INSERT INTO internuser (Name, Email, Password, Company) 
                       VALUES('$name','$email','$password1','$company')";
         mysqli_query($con, $RegisterUser);
-        echo '<script>alert("Sign up successful.")</script>';
-        header("location: login.php");
+        echo '<script>alert("Sign up successful.")
+        window.location.replace("login.php");
+        </script>';
     }
     else if ($usertype == "Support Team") {
         $RegisterUser = "INSERT INTO supportteam (Name, Email, Password, Company)
         VALUES('$name','$email','$password1','$company')";
         mysqli_query($con, $RegisterUser);
-        echo '<script> alert("Sign up successful.") </script>';
-        header("location: login.php");
+        echo '<script>alert("Sign up successful.")
+        window.location.replace("login.php");
+        </script>';
     }
     else if ($usertype == "Administrator") {
         $RegisterUser = "INSERT INTO administrator (Name, Email, Password, Company) 
                           VALUES('$name','$email','$password1','$company')";
         mysqli_query($con, $RegisterUser);
-        echo '<script> alert ("Sign up successful.") </script>';
-        header("location: login.php");
+        echo '<script>alert("Sign up successful.")
+        window.location.replace("login.php");
+        </script>';
     }
     ?>
