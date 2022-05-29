@@ -35,7 +35,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     <div class="container-fluid">
         <div class="d-flex flex-row">
             <div class="p-2">
-                <!-- Button to open the offcanvas sidebar -->
+                <!-- Hamburger button to open the off-canvas sidebar -->
                 <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" id="hamburgerbutton">
                     <i class="bi bi-list" id="hamburgericon"></i>
                 </button>
@@ -45,14 +45,17 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             </div>
         </div>
         <ul class="navbar-nav">
+            <!-- User's name at the page header -->
             <li class="nav-item">
                 <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
             </li>
             <li class="nav-item">
+                <!-- Dropdown icon that shows the profile and logout button -->
                 <div class="dropdown">
                     <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item "href="adminprofile.php" id="profile">Profile</a></li>
                         <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
                     </ul>
                 </div>
@@ -61,8 +64,10 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     </div>
 </nav>
 
+<!-- Main content starts here -->
 <div id="viewport">
 
+    <!-- off-canvas sidebar content -->
     <div class="offcanvas offcanvas-start" id="demo">
         <div class="offcanvas-header">
             <h1 class="offcanvas-title">Menu</h1>
@@ -96,6 +101,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     </div>
 
     <?php
+    //getting the ticket based on TID passed on URL parameter
     $id=$_GET["id"];
     $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE TID='$id'");
     $chosenTicket = mysqli_fetch_array($getTickets)
@@ -139,27 +145,30 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                             <div class="mb-3">
                                 <textarea class="form-control" id="tickettextareaadmin" rows="3" placeholder="Description" name="content" disabled><?php echo $chosenTicket['Content'];?></textarea>
                             </div>
-
+                            <!-- Dropdown for support personnel (Initially assigning of ticket to a support personnel) -->
                             <div class="row mx-auto">
                                 <div class="col-7 d-flex justify-content-start">
                                     <h6 style="margin-top:12px; margin-right:5px;">Assigned to:  </h6>
                                     <select class="form-select" aria-label="Default select example" id="selectsupport" name="supportuser">
                                         <?php
+                                        //code group gets all the support user on the database and display them as dropdown item using while loop
                                         $currentsupport = $chosenTicket['Personnel_ID'];
                                         $fetchassignedsupport = mysqli_query($con,"SELECT * FROM supportteam WHERE UID='$currentsupport'");
                                         $fetchsupports = mysqli_query($con,"SELECT * FROM supportteam");
 
+                                        //if the $currentsupport value is zero, this means that the ticket is not assigned to any support personnel
+                                        //hence we need to display "None" on the dropdown to indicate that it is currently not handled by any support personnel
                                         if ($currentsupport==0){?>
-                                            <option value=0 selected>None</option>
+                                            <option value=0 selected>None</option><!-- "None" dropdown option -->
                                             <?php while($supportslist = mysqli_fetch_assoc($fetchsupports)){ ?>
                                                     <option value =<?php echo $supportslist['UID']; ?>>
                                                         <?php echo $supportslist['Name'];?>
                                                     </option>
                                                 <?php }
                                              }
-                                        else {
+                                        else { //if the ticket is already assigned, we display in the dropdown first the name of the assigned support personnel
                                             $assignedsupport = mysqli_fetch_assoc($fetchassignedsupport);?>
-                                            <option value=<?php echo $assignedsupport['UID']; ?> selected> <?php echo $assignedsupport['Name']; ?> </option>
+                                            <option value=<?php echo $assignedsupport['UID']; ?> selected> <?php echo $assignedsupport['Name']; ?> </option> <!-- Assigned support personnel on the ticket -->
 
                                             <?php while($supportslist = mysqli_fetch_assoc($fetchsupports)){
                                                 if ( $supportslist['UID'] != $assignedsupport['UID']) { ?>
@@ -181,8 +190,6 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 
                 </div>
             </div>
-
-
         </div>
       </div>
 </div>

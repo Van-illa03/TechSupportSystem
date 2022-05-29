@@ -38,7 +38,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
   <div class="container-fluid">
       <div class="d-flex flex-row">
           <div class="p-2">
-              <!-- Button to open the offcanvas sidebar -->
+              <!-- Hamburger button to open the off-canvas sidebar -->
               <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" id="hamburgerbutton">
                   <i class="bi bi-list" id="hamburgericon"></i>
               </button>
@@ -48,14 +48,17 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
           </div>
       </div>
       <ul class="navbar-nav">
+          <!-- User's name at the page header -->
           <li class="nav-item">
               <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
           </li>
           <li class="nav-item">
+              <!-- Dropdown icon that shows the profile and logout button -->
               <div class="dropdown">
                   <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item "href="adminprofile.php" id="profile">Profile</a></li>
                       <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
                   </ul>
               </div>
@@ -64,8 +67,10 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
   </div>
 </nav>
 
+<!-- Main content starts here -->
 <div id="viewport">
 
+    <!-- off-canvas sidebar content -->
     <div class="offcanvas offcanvas-start" id="demo">
         <div class="offcanvas-header">
             <h1 class="offcanvas-title">Menu</h1>
@@ -105,12 +110,13 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     </div>
 
 
-  <!-- Content -->
+    <!-- Content (Table) -->
       <div id="content"  class="container">
           <br>
         <div class="container-fluid" id="content-container">
             <h2>Registered Support Personnel</h2>
              <table class="table table-hover table-bordered table-striped" style="border-color:#224375">
+                 <!-- Table Header -->
                 <thead>
                 <tr id="tableRow">
                     <th scope="col" class="text-center">Personnel ID</th>
@@ -122,11 +128,11 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 </thead>
                 <tbody>
             <?php
-            // selecting rows
+            // selecting all the support personnel data and displaying it by row
             $supportsql = "SELECT * FROM supportteam ORDER BY UID ASC";
             $supportresult = mysqli_query($con,$supportsql);
 
-            while($supportusers = mysqli_fetch_assoc($supportresult)){
+            while($supportusers = mysqli_fetch_assoc($supportresult)){ // fetching all the support personnel and displaying it through a while loop
                 ?>
                 <tr>
                 <td class="text-center"> <?php echo $supportusers['UID'];?></td>
@@ -138,7 +144,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 </td>
                 </tr>
                 <?php
-                }
+                } //close while loop
                 ?>
                 </tbody>
                 </table>
@@ -147,10 +153,12 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 </div>
 
 <script>
+    //plugin that enables pagination on our tables
     $(document).ready(function (){
         $('table').DataTable();
     });
 
+    //function that ask the user to confirm the deletion of a support personnel
     function confirmation() {
         var result = confirm('You are about to delete this user. Are you sure?');
 

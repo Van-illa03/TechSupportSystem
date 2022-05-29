@@ -39,7 +39,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     <div class="container-fluid">
         <div class="d-flex flex-row">
             <div class="p-2">
-                <!-- Button to open the offcanvas sidebar -->
+                <!-- Hamburger button to open the off-canvas sidebar -->
                 <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" id="hamburgerbutton">
                     <i class="bi bi-list" id="hamburgericon"></i>
                 </button>
@@ -50,14 +50,17 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         </div>
 
         <ul class="navbar-nav">
+            <!-- User's name at the page header -->
             <li class="nav-item">
                 <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
             </li>
             <li class="nav-item">
+                <!-- Dropdown icon that shows the profile and logout button -->
                 <div class="dropdown">
                     <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item "href="adminprofile.php" id="profile">Profile</a></li>
                         <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
                     </ul>
                 </div>
@@ -67,8 +70,10 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     </div>
 </nav>
 
-
+<!-- Main content starts here -->
 <div id="viewport">
+
+    <!-- off-canvas sidebar content -->
     <div class="offcanvas offcanvas-start" id="demo">
         <div class="offcanvas-header">
             <h1 class="offcanvas-title">Menu</h1>
@@ -108,12 +113,13 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     </div>
     </div>
 
-  <!-- Content -->
+    <!-- Content (Table) -->
       <div id="content"  class="container">
           <br>
         <div class="container-fluid" id="content-container">
             <h2>Pending Tickets</h2>
              <table class="table table-hover table-bordered table-striped" style="border-color:#224375">
+                 <!-- Table Header -->
                 <thead>
                 <tr id="tableRow">
                     <th scope="col" class="text-center">Ticket ID</th>
@@ -129,10 +135,11 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 </tr>
                 </thead>
                 <tbody>
+                <!-- Table data by fetching all the tickets owned by the user -->
             <?php
             $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE Status='Pending'");
 
-            while($tickets = mysqli_fetch_array($getTickets)){
+            while($tickets = mysqli_fetch_array($getTickets)){ // fetching all the tickets and displaying it through a while loop
                 $assignedsupp=$tickets['Personnel_ID'];
                 if ($assignedsupp == 0){
                     $getassignedsupp['Name']="None";
@@ -156,7 +163,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                 </tr>
 
                 <?php
-            }
+            } //close while loop
             ?>
                 </tbody>
                 </table>
@@ -164,6 +171,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
       </div>
 </div>
 <script>
+    //plugin that enables pagination on our tables
     $(document).ready(function (){
         $('table').DataTable();
     });

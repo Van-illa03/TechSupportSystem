@@ -35,7 +35,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     <div class="container-fluid">
         <div class="d-flex flex-row">
             <div class="p-2">
-                <!-- Button to open the offcanvas sidebar -->
+                <!-- Hamburger button to open the off-canvas sidebar -->
                 <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" id="hamburgerbutton">
                     <i class="bi bi-list" id="hamburgericon"></i>
                 </button>
@@ -45,14 +45,17 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             </div>
         </div>
         <ul class="navbar-nav">
+            <!-- User's name at the page header -->
             <li class="nav-item">
                 <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
             </li>
             <li class="nav-item">
+                <!-- Dropdown icon that shows the profile and logout button -->
                 <div class="dropdown">
                     <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item "href="adminprofile.php" id="profile">Profile</a></li>
                         <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
                     </ul>
                 </div>
@@ -60,9 +63,10 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         </ul>
     </div>
 </nav>
-
+<!-- Main content starts here -->
 <div id="viewport">
 
+    <!-- off-canvas sidebar content -->
     <div class="offcanvas offcanvas-start" id="demo">
         <div class="offcanvas-header">
             <h1 class="offcanvas-title">Menu</h1>
@@ -101,28 +105,29 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     </div>
     </div>
 <?php
+    //fetching the codes from the database
     $codequery = mysqli_query($con,"SELECT * FROM codes");
     $getcodes = mysqli_fetch_assoc($codequery);
 
-    if (isset($getcodes['id'])){
+    if (isset($getcodes['id'])){ //if id is set, it means that there is already an existing row for the code.
         //no arg
-    } else {
+    } else { //if the row id is not set, it means that the row is still not existing, so the code below initializes it
         $InitCode = "INSERT INTO codes (AdminCode,SupportCode,id)
                     VALUES('','',1)";
         mysqli_query($con, $InitCode);
     }
 
-    if(isset($_POST['submit'])){
+    if(isset($_POST['submit'])){ //if submit is set -- the code only works when submit button is clicked
         $ACode = $_POST['acode'];
         $SCode = $_POST['scode'];
 
-            if (isset($getcodes['AdminCode'])){
+            if (isset($getcodes['AdminCode'])){ //if there's a fetched admin code in the database, we only update it, not insert
                 $AUpdateCode = "UPDATE codes
                     SET AdminCode = '$ACode' WHERE id=1";
                 mysqli_query($con, $AUpdateCode);
             }
 
-        if (isset($getcodes['SupportCode'])){
+        if (isset($getcodes['SupportCode'])){ //if there's a fetched support code in the database, we only update it, not insert
             $SUpdateCode = "UPDATE codes
                     SET SupportCode = '$SCode' WHERE id=1";
             mysqli_query($con, $SUpdateCode);
@@ -130,7 +135,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     }
 
 ?>
-  <!-- Content -->
+  <!-- Content (code display)-->
       <div id="content" class="container">
           <br>
         <div class="container-fluid" id="content-container">
@@ -159,21 +164,23 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                                 </div>
                                 <div class="row">
                                     <?php
+                                    //we fetch the codes again for displaying
                                     $codequery = mysqli_query($con,"SELECT * FROM codes");
                                     $getcodes = mysqli_fetch_assoc($codequery);
 
-                                    if(isset($getcodes['SupportCode'])){
+                                    if(isset($getcodes['SupportCode'])){ //if there's a fetched support code
                                         //no arg
-                                    } else {
+                                    } else { //if there's not fetched support code, we only assign null string
                                         $getcodes['SupportCode'] = "";
                                     }
 
-                                    if (isset($getcodes['AdminCode'])){
+                                    if (isset($getcodes['AdminCode'])){ //if there's a fetched admin code
                                         //no arg
-                                    } else {
+                                    } else { //if there's not fetched admin code, we only assign null string
                                         $getcodes['AdminCode'] = "";
                                     }
                                     ?>
+                                    <!-- display the codes -->
                                     <div class="col-6">
                                         <textarea class="form-control" type="text" rows="3" placeholder="Input Support Code (up to 10 characters only)" name="scode"><?php echo $getcodes['SupportCode'];?></textarea>
                                     </div>
