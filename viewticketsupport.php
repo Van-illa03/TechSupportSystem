@@ -35,7 +35,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     <div class="container-fluid">
         <div class="d-flex flex-row">
             <div class="p-2">
-                <!-- Button to open the offcanvas sidebar -->
+                <!-- Hamburger button to open the off-canvas sidebar -->
                 <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" id="hamburgerbutton">
                     <i class="bi bi-list" id="hamburgericon"></i>
                 </button>
@@ -45,14 +45,17 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             </div>
         </div>
         <ul class="navbar-nav">
+            <!-- User's name at the page header -->
             <li class="nav-item">
                 <h6 class="nav-link" disabled><?php echo $getcurrentuser['Name']?></h6>
             </li>
             <li class="nav-item d-flex justify-content-center">
+                <!-- Dropdown icon that shows the profile and logout button -->
                 <div class="dropdown">
                     <button class="btn dropdown-toggle bi bi-person-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item "href="supportprofile.php" id="profile">Profile</a></li>
                         <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
                     </ul>
                 </div>
@@ -61,7 +64,10 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
     </div>
 </nav>
 
+<!-- Main content starts here -->
 <div id="viewport">
+
+    <!-- off-canvas sidebar content -->
     <div class="offcanvas offcanvas-start" id="demo">
         <div class="offcanvas-header">
             <h1 class="offcanvas-title">Menu</h1>
@@ -95,6 +101,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
 
 
     <?php
+    //getting the ticket based on TID passed on URL parameter
     $id=$_GET["id"];
     $getTickets = mysqli_query($con,"SELECT * FROM tickets WHERE TID='$id'");
     $chosenTicket = mysqli_fetch_array($getTickets)
@@ -126,7 +133,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                                     <div class="col-9">
                                         <h4><?php echo $chosenTicket['Subject'];?> (<?php echo $chosenTicket['Category'];?>)</h4>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-3"> <!-- Dropdown for ticket status -->
                                         <select class="form-select" aria-label="Default select example" id="selectstatus" name="ticketstatus">
                                             <?php
                                             $currentstatus = $chosenTicket['Status'];
@@ -150,55 +157,66 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-8"> <!-- Sender email display -->
                                         <p><?php echo $chosenTicket['Sender_Name'];?> | <?php echo $chosenTicket['Sender_Email'];?></p>
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3"> <!-- Content text area -->
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" name="content" disabled><?php echo $chosenTicket['Content'];?></textarea>
                                 <br>
-                                <h5>Personnel Notes</h5>
+                                <h5>Personnel Notes</h5> <!-- Support personnel note text area -->
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter your notes/comments" name="note" ><?php echo $chosenTicket['Note'];?></textarea>
                             </div>
                             <div class="row mx-auto">
                                 <hr style="height:2px; color:black;">
+                                <!-- Code block for sending email feature -->
                                 <div class="p-0 d-flex align-items-center">
                                     <h5>Initiate Email</h5>
+
+                                    <!-- Radio button -->
                                     <input type="radio" id="yesemail" name="emailinit" style="margin-left: 10px; margin-right: 5px; margin-top:-3px;" value="yes" checked="true">
                                     <label for="yesemail" style="margin-top: -3px;">Yes</label>
                                     <input type="radio" id="noemail" name="emailinit" style="margin-left: 10px; margin-right: 5px; margin-top:-3px;" value="no" >
                                     <label for="noemail" style="margin-top: -3px;">No</label>
                                 </div>
                                 <div class="d-flex p-0 align-items-center">
+                                    <!-- Inputs for recipient email and email subject -->
                                     <p style="margin-top: 10px; font-size: 15px;" id="emaillabel">Recipient:</p><input type="email" class="form-control" id="emailto" rows="1" placeholder="Receipient Email" name="emailto" style="height:40px; width: 200px; margin-left: 10px;">
                                     <p style="margin-top: 10px; margin-left: 20px; font-size: 15px;" id="emailsubj">Subject:</p><input type="text" class="form-control" id="subject" rows="1" placeholder="Email Subject" name="subject" style="height:40px; width: 260px; margin-left: 10px;">
                                 </div>
-
+                                <!-- Email Content -->
                                 <textarea class="form-control" id="emailcontent" rows="3" placeholder="Enter Email Content Here" name="emailcontent"></textarea>
                             </div>
                             <br>
                             <div class="row mx-auto">
                                 <div class="col-7 d-flex justify-content-start">
+
+                                    <!-- Dropdown for support personnel (Re-assigning of ticket to other personnel) -->
                                     <p style="margin-top:10px; margin-right:8px;">Re-assign to:   </p>
                                     <select class="form-select" aria-label="Default select example" id="selectsupport" name="supportuser">
                                         <?php
+
+                                        //code group gets all the support user on the database and display them as dropdown item using while loop
                                         $currentsupport = $chosenTicket['Personnel_ID'];
                                         $fetchassignedsupport = mysqli_query($con,"SELECT * FROM supportteam WHERE UID='$currentsupport'");
                                         $fetchsupports = mysqli_query($con,"SELECT * FROM supportteam");
 
-                                        if ($currentsupport==0){?>
-                                            <option value=0 selected>None</option>
+                                        //if the $currentsupport value is zero, this means that the ticket is not assigned to any support personnel
+                                        //hence we need to display "None" on the dropdown to indicate that it is currently not handled by any support personnel
+                                        if ($currentsupport==0){ ?>
+                                            <option value=0 selected>None</option> <!-- "None" dropdown option -->
+
                                             <?php while($supportslist = mysqli_fetch_assoc($fetchsupports)){ ?>
                                                 <option value =<?php echo $supportslist['UID']; ?>>
                                                     <?php echo $supportslist['Name'];?>
                                                 </option>
                                             <?php }
                                         }
-                                        else {
+                                        else { //if the ticket is already assigned, we display in the dropdown first the name of the assigned support personnel
                                             $assignedsupport = mysqli_fetch_assoc($fetchassignedsupport);?>
-                                            <option value=<?php echo $assignedsupport['UID']; ?> selected> <?php echo $assignedsupport['Name']; ?> </option>
+                                            <option value=<?php echo $assignedsupport['UID']; ?> selected> <?php echo $assignedsupport['Name']; ?> </option> <!-- Assigned support personnel on the ticket -->
 
                                             <?php while($supportslist = mysqli_fetch_assoc($fetchsupports)){
                                                 if ( $supportslist['UID'] != $assignedsupport['UID']) { ?>
