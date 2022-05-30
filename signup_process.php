@@ -1,7 +1,7 @@
 <?php
     //database connection
-    $con=mysqli_connect("localhost","root","","TechSupportSystem");
-    if (!$con){
+$con=mysqli_connect("localhost","id19015714_techsupportadmin","rZf}z!K3@PZ^9Nt/","id19015714_techsupportsystem");
+if (!$con){
         echo "failed to connect";
         die();
     }
