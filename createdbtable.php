@@ -11,11 +11,10 @@ $db_selected = mysqli_select_db($link,'techsupportsystem' );
 
 if (!$db_selected) {
     // If we couldn't, then it either doesn't exist, or we can't see it.
-    $sql = 'techsupportsystem';
+    $sql = 'CREATE DATABASE techsupportsystem';
 
     //initializing the database
     if (mysqli_query($link, $sql)) {
-        echo "Database my_db created successfully\n";
     } else {
 
     }
@@ -56,74 +55,68 @@ $result7 = $con->query($queryTableTicketbin);
 
 //initialize intern user table
 if(empty($result)) {
-    echo "<p>" . $tableIntern . " table does not exist. Creating now...</p><br>";
     $query = mysqli_query($con,"CREATE TABLE IF NOT EXISTS internuser (
-            id INT NOT NULL AUTO_INCREMENT,
-            PRIMARY KEY(id),
-            name    VARCHAR(255) NOT NULL,
-            email   VARCHAR(255)  NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            company VARCHAR(255) NOT NULL
+            UID INT(254) NOT NULL AUTO_INCREMENT,
+            PRIMARY KEY(UID),
+            Name    VARCHAR(255) NOT NULL,
+            Email   VARCHAR(255)  NOT NULL,
+            Password VARCHAR(255) NOT NULL,
+            Company VARCHAR(255) NOT NULL
         )");
 }
 
 //initialize supportteam user table
 if(empty($result2)){
     {
-        echo "<p>" . $tableSupport . " table does not exist. Creating now...</p><br>";
         $query = mysqli_query($con,"CREATE TABLE IF NOT EXISTS supportteam (
-            id INT NOT NULL AUTO_INCREMENT,
-            PRIMARY KEY(id),
-            name    VARCHAR(255) NOT NULL,
-            email   VARCHAR(255)  NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            company VARCHAR(255) NOT NULL
+            UID INT(254) NOT NULL AUTO_INCREMENT,
+            PRIMARY KEY(UID),
+            Name    VARCHAR(255) NOT NULL,
+            Email   VARCHAR(255)  NOT NULL,
+            Password VARCHAR(255) NOT NULL,
+            Company VARCHAR(255) NOT NULL
         )");
     }
 }
 
 //initialize administrator table
 if(empty($result3)){
-    echo "<p>" . $tableAdmin . " table does not exist. Creating now...</p><br>";
     $query = mysqli_query($con,"CREATE TABLE IF NOT EXISTS administrator (
-            id INT NOT NULL AUTO_INCREMENT,
-            PRIMARY KEY(id),
-            name    VARCHAR(255) NOT NULL,
-            email   VARCHAR(255)  NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            company VARCHAR(255) NOT NULL
+            UID INT(254) NOT NULL AUTO_INCREMENT,
+            PRIMARY KEY(UID),
+            Name    VARCHAR(255) NOT NULL,
+            Email   VARCHAR(255)  NOT NULL,
+            Password VARCHAR(255) NOT NULL,
+            Company VARCHAR(255) NOT NULL
         )");
 }
 
 //initialize codes table
 if(empty($result4)){
-    echo "<p>" . $tableCodes . " table does not exist. Creating now...</p><br>";
     $query = mysqli_query($con,"CREATE TABLE IF NOT EXISTS codes (
             id INT(2) NOT NULL,
             SupportCode    VARCHAR(10) NOT NULL,
-            AdminCode   VARCHAR(10)  NOT NULL,
+            AdminCode   VARCHAR(10)  NOT NULL
         )");
 }
 
 //initialize notifications table
 if(empty($result5)){
-    echo "<p>" . $tableNotifications . " table does not exist. Creating now...</p><br>";
     $query = mysqli_query($con,"CREATE TABLE IF NOT EXISTS notifications (
-            NID INT NOT NULL AUTO_INCREMENT,
+            NID INT(254) NOT NULL AUTO_INCREMENT,
             PRIMARY KEY(NID),
             TID INT(254) NOT NULL,
             Ticket_Owner INT(254) NOT NULL,
             Content    VARCHAR(254) NOT NULL,
             ViewStatus  INT(2)  NOT NULL,
-            date VARCHAR(254) NOT NULL,
+            date VARCHAR(254) NOT NULL
         )");
 }
 
 //initialize tickets table
 if(empty($result6)){
-    echo     "<p>" . $tableTickets . " table does not exist. Creating now...</p><br>";
     $query = mysqli_query($con,"CREATE TABLE IF NOT EXISTS tickets (
-            TID INT NOT NULL AUTO_INCREMENT,
+            TID INT(254) NOT NULL AUTO_INCREMENT,
             PRIMARY KEY(TID),
             Sender_ID INT(254) NOT NULL,
             Sender_Name VARCHAR(254) NOT NULL,
@@ -140,9 +133,8 @@ if(empty($result6)){
 
 //initialize ticketbin table
 if(empty($result7)){
-    echo     "<p>" . $tableTicketbin . " table does not exist. Creating now...</p><br>";
     $query = mysqli_query($con,"CREATE TABLE IF NOT EXISTS ticketbin (
-            itemID INT NOT NULL AUTO_INCREMENT,
+            itemID INT(254) NOT NULL AUTO_INCREMENT,
             PRIMARY KEY(itemID),
             TID INT(254) NOT NULL,  
             Sender_ID INT(254) NOT NULL,
@@ -159,5 +151,17 @@ if(empty($result7)){
 }
 
 else{
-    echo "<p>all required tables exists</p>";
 }
+
+//fetching the codes from the database
+$codequery = mysqli_query($con,"SELECT * FROM codes");
+$getcodes = mysqli_fetch_assoc($codequery);
+
+if (isset($getcodes['id'])){ //if id is set, it means that there is already an existing row for the code.
+    //no arg
+} else { //if the row id is not set, it means that the row is still not existing, so the code below initializes it
+    $InitCode = "INSERT INTO codes (AdminCode,SupportCode,id)
+                    VALUES('UIPadmin','UIPsupp',1)";
+    mysqli_query($con, $InitCode);
+}
+    ?>

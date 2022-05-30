@@ -113,7 +113,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         //no arg
     } else { //if the row id is not set, it means that the row is still not existing, so the code below initializes it
         $InitCode = "INSERT INTO codes (AdminCode,SupportCode,id)
-                    VALUES('','',1)";
+                    VALUES('UIPadmin','UIPsupp',1)";
         mysqli_query($con, $InitCode);
     }
 
@@ -122,15 +122,22 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         $SCode = $_POST['scode'];
 
             if (isset($getcodes['AdminCode'])){ //if there's a fetched admin code in the database, we only update it, not insert
-                $AUpdateCode = "UPDATE codes
+                if ($getcodes['AdminCode'] != $ACode){
+                    $AUpdateCode = "UPDATE codes
                     SET AdminCode = '$ACode' WHERE id=1";
-                mysqli_query($con, $AUpdateCode);
+                    mysqli_query($con, $AUpdateCode);
+                    echo '<script>alert("Administrator code updated successfully.");</script>';
+                }
             }
 
         if (isset($getcodes['SupportCode'])){ //if there's a fetched support code in the database, we only update it, not insert
-            $SUpdateCode = "UPDATE codes
+            if ($getcodes['SupportCode'] != $SCode){
+                $SUpdateCode = "UPDATE codes
                     SET SupportCode = '$SCode' WHERE id=1";
-            mysqli_query($con, $SUpdateCode);
+                mysqli_query($con, $SUpdateCode);
+                echo '<script>alert("Support code updated successfully.");</script>';
+            }
+
         }
     }
 
@@ -151,7 +158,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                         </div>
                     </div>
 
-                    <form method="POST" action="">
+                    <form method="POST">
                         <div class="card-body">
                             <div class="mb-3">
                                 <div class="row">
