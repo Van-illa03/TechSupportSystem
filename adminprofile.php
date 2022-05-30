@@ -112,6 +112,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
         <br>
         <div class="container" id="content-container">
             <h2>User Profile</h2>
+            <!-- Form Start -->
             <form action="updateadmininfo.php?id=<?php echo $getcurrentuser['UID']?>" method="POST">
                 <div class="container" style="background-color: white;padding:10px; width: 500px; margin-bottom: 60px;" id="profilecontainer">
                     <i class="bi bi-person-fill d-flex justify-content-center" id="profileicon"></i>

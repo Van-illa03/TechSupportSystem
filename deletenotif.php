@@ -8,8 +8,11 @@ if (!$con){
 session_start();
     //getting the id of the current user from session and assigning it to $currentuser variable
     $currentuser = $_SESSION['id'];
+
+    //getting the motification id using URL parameter
     $nid=$_GET["nid"];
 
+    //deleting the specific notification
     $delquery = "DELETE FROM notifications WHERE NID='$nid'";
     mysqli_query($con,$delquery);
 

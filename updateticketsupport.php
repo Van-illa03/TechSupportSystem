@@ -11,22 +11,27 @@ if (!$con){
 }
 session_start();
 
+    //getting the ticket id using URL parameter
     $tid=$_GET["tid"];
+    //getting form inputs
     $chosenuser = $_POST['supportuser'];
     $tixstatus = $_POST['ticketstatus'];
     $note = trim($_POST['note']);
     $date = $_POST['timeStamp'];
 
+    //fetching ticket using the ticket id retrieved from URl parameter
     $currentticketquery = "SELECT * FROM tickets WHERE TID='$tid'";
     $fetchcurrentticket = mysqli_query($con,$currentticketquery);
 
+    //assigning the ticket details to variables
     $currentticket = mysqli_fetch_assoc($fetchcurrentticket);
     $fetchednote = trim($currentticket['Note']);
     $fetchedstatus = $currentticket['Status'];
     $fetchedSenderID = $currentticket['Sender_ID'];
 
 
-
+    //notification code starts here
+    //this code check if any changes were made
     if (isset($_POST['submit'])){
         //comparing notes from db and submitted form
         if ($fetchednote == null){ //if note from db is null
@@ -53,6 +58,7 @@ session_start();
         }
 
         if ($NotifContent != null) {
+            //inserting new notifications
             $InsertNotif = "INSERT INTO notifications (TID,Ticket_Owner,Content,ViewStatus,date) 
                       VALUES('$tid','$fetchedSenderID','$NotifContent',0,'$date')";
             mysqli_query($con, $InsertNotif);
@@ -63,6 +69,8 @@ session_start();
         mysqli_query($con, $UpdateTicket);
         $emailcontent = $_POST['emailcontent'];
 
+
+        //SMTP mailing starts here
         if ($emailcontent != null){
             $mailto = $_POST['emailto'];
             $subject = $_POST['subject'];
@@ -70,13 +78,13 @@ session_start();
                  $subject = "Undefined Subject";
              }
 
-
+            //PHP mailer
             $mail = new \PHPMailer\PHPMailer\PHPMailer();
 
+             //default config of sending email using PHP mailer and Gmail SMTP
             $mail->isSMTP();
             $mail->Host = "smtp.gmail.com";
             $mail->SMTPAuth = true;
-
             $mail->Username = "techsuppsysUIP@gmail.com";
             $mail->Password = "quetzalcoatl";
             $mail->SMTPSecure = "tls";

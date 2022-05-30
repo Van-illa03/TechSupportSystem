@@ -29,6 +29,8 @@
         exit();
     }
 
+
+    //checking the user type and getting the account data of the user
     if ($usertype == "Intern") {
         $Filtering = mysqli_query($con,"SELECT * FROM internuser WHERE Email='$email' LIMIT 1");
         $FilteringResult= mysqli_fetch_assoc($Filtering);
@@ -44,20 +46,20 @@
 
 
     //verification of account
-    if ($FilteringResult)  {
-        if ($FilteringResult['Password'] != $password) {
+    if ($FilteringResult)  { //if there is a fetched account data in the database
+        if ($FilteringResult['Password'] != $password) { //checking if the passwords matched
             header("Location: login.php?error=Incorrect Password.");
             exit();
         }
         else {
-            if ($usertype == "Intern"){
+            if ($usertype == "Intern"){ //if user type is intern
                 //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
                 $_SESSION['id'] = $FilteringResult['UID'];
                 header("location: internhomepage.php");
             }
-            else if ($usertype == "Administrator") {
+            else if ($usertype == "Administrator") { //if user type is administrator
                 if (isset($admincode)){
-                    if ($getcodes['AdminCode'] == $admincode){
+                    if ($getcodes['AdminCode'] == $admincode){ //checking if the inputted admin code is correct
                         //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
                         $_SESSION['id'] = $FilteringResult['UID'];
                         header("location: adminhomepage.php");
@@ -68,9 +70,9 @@
             }
 
             }
-            else if ($usertype == "Support Team") {
+            else if ($usertype == "Support Team") { //if usertype is support personnel
                 if (isset($supportcode)){
-                    if ($getcodes['SupportCode'] == $supportcode){
+                    if ($getcodes['SupportCode'] == $supportcode){ //checking if the inputted admin code is correct
                         //setting the session variable to the unique id of the current user. This $_SESSION variable will be used althroughout the pages
                         $_SESSION['id'] = $FilteringResult['UID'];
                         header("location: supporthomepage.php");

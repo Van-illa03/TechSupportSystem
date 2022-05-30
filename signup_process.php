@@ -17,6 +17,7 @@
     $supportcodesu = $_POST['susc'];
     $FilteringResult = false;
 
+    //fetching the admin/support code
     $codequery = mysqli_query($con,"SELECT * FROM codes");
     $getcodes = mysqli_fetch_assoc($codequery);
 
@@ -26,7 +27,7 @@
         exit();
     }
 
-    //verification of password
+    //checking if passwords matched
     if ($password1 != $password2){
         header("Location: signup.php?error=Passwords does not match.");
         exit();
@@ -38,7 +39,7 @@
     else if ($usertype == "Support Team") {
         if (isset($supportcodesu)){
             if ($getcodes['SupportCode'] == $supportcodesu){
-                // no arg
+                // it means that the support code inputted is correct
             }
             else {
                 header("Location: signup.php?error=Incorrect Support Code.");
@@ -49,7 +50,7 @@
     else if ($usertype == "Administrator") {
         if (isset($admincodesu)){
             if ($getcodes['AdminCode'] == $admincodesu){
-                // no arg
+                // it means that the admin code inputted is correct
             }
             else {
                 header("Location: signup.php?error=Incorrect Admin Code.");
@@ -75,7 +76,7 @@
         $FilteringResult = mysqli_fetch_assoc($Filtering);
     }
 
-
+    //if there's a fetch data here, it means that the email inputted has a duplicated in the database
     if ($FilteringResult)  {
         if ($FilteringResult['Email'] == $email) {
             header("Location: signup.php?error=The Email you entered is already in use.");
@@ -83,6 +84,8 @@
         }
     }
 
+
+    //if there are no errors, the signup process will continue
     if ($usertype == "Intern"){
         $RegisterUser = "INSERT INTO internuser (Name, Email, Password, Company) 
                       VALUES('$name','$email','$password1','$company')";
