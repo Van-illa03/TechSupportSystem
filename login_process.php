@@ -25,7 +25,7 @@
 
     //verification of email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: login.php?error=Invalid Email. Check the format.");
+        header("Location: index.php?error=Invalid Email. Check the format.");
         exit();
     }
 
@@ -48,7 +48,7 @@
     //verification of account
     if ($FilteringResult)  { //if there is a fetched account data in the database
         if ($FilteringResult['Password'] != $password) { //checking if the passwords matched
-            header("Location: login.php?error=Incorrect Password.");
+            header("Location: index.php?error=Incorrect Password.");
             exit();
         }
         else {
@@ -65,7 +65,7 @@
                         header("location: adminhomepage.php");
                     }
                     else {
-                        header("Location: login.php?error=Incorrect Admin Code.");
+                        header("Location: index.php?error=Incorrect Admin Code.");
                     }
             }
 
@@ -78,14 +78,14 @@
                         header("location: supporthomepage.php");
                     }
                     else {
-                        header("Location: login.php?error=Incorrect Support Code.");
+                        header("Location: index.php?error=Incorrect Support Code.");
                     }
                 }
             }
          }
     }
     else {
-        header("Location: login.php?error=The email you entered does not match any accounts.");
+        header("Location: index.php?error=The email you entered does not match any accounts.");
         exit();
     }
 

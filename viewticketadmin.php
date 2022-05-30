@@ -56,7 +56,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item "href="adminprofile.php" id="profile">Profile</a></li>
-                        <li><a class="dropdown-item "href="login.php" id="logout">Log Out</a></li>
+                        <li><a class="dropdown-item " href="index.php" id="logout">Log Out</a></li>
                     </ul>
                 </div>
             </li>
@@ -94,6 +94,12 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
             </li>
             <li class="nav-item" id="navwhite">
                 <a class="nav-link bi bi-bookmark-check-fill" href="adminclosedticket.php"> Closed</a>
+            </li>
+            <li class="nav-item" id="navblue">
+                <a class="nav-link bi bi-person-check-fill" href="adminviewsupports.php">  Support Personnel</a>
+            </li>
+            <li class="nav-item" id="navwhite">
+                <a class="nav-link bi bi-shield-lock-fill" href="admingeneratecode.php"> Security Codes</a>
             </li>
         </ul>
     </div>

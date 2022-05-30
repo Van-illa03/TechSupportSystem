@@ -91,7 +91,7 @@
                       VALUES('$name','$email','$password1','$company')";
         mysqli_query($con, $RegisterUser);
         echo '<script>alert("Sign up successful.")
-        window.location.replace("login.php");
+        window.location.replace("index.php");
         </script>';
     }
     else if ($usertype == "Support Team") {
@@ -99,7 +99,7 @@
         VALUES('$name','$email','$password1','$company')";
         mysqli_query($con, $RegisterUser);
         echo '<script>alert("Sign up successful.")
-        window.location.replace("login.php");
+        window.location.replace("index.php");
         </script>';
     }
     else if ($usertype == "Administrator") {
@@ -107,7 +107,7 @@
                           VALUES('$name','$email','$password1','$company')";
         mysqli_query($con, $RegisterUser);
         echo '<script>alert("Sign up successful.")
-        window.location.replace("login.php");
+        window.location.replace("index.php");
         </script>';
     }
     ?>
