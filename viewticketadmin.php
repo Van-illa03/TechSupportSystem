@@ -151,6 +151,9 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                             </div>
                             <div class="mb-3">
                                 <textarea class="form-control" id="tickettextareaadmin" rows="3" placeholder="Description" name="content" disabled><?php echo $chosenTicket['Content'];?></textarea>
+                                <hr>
+                                <p>Assigned Personnel's Note:</p>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Personnel Notes/Comments" name="note" disabled><?php echo $chosenTicket['Note'];?></textarea>
                             </div>
                             <!-- Dropdown for support personnel (Initially assigning of ticket to a support personnel) -->
                             <div class="row mx-auto">

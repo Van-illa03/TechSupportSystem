@@ -28,6 +28,7 @@ session_start();
     $fetchednote = trim($currentticket['Note']);
     $fetchedstatus = $currentticket['Status'];
     $fetchedSenderID = $currentticket['Sender_ID'];
+    $NotifContent = "";
 
 
     //notification code starts here
@@ -57,7 +58,7 @@ session_start();
             $NotifContent .= $status;
         }
 
-        if ($NotifContent != null) {
+        if ($NotifContent != "") {
             //inserting new notifications
             $InsertNotif = "INSERT INTO notifications (TID,Ticket_Owner,Content,ViewStatus,date) 
                       VALUES('$tid','$fetchedSenderID','$NotifContent',0,'$date')";
@@ -70,44 +71,57 @@ session_start();
         $emailcontent = $_POST['emailcontent'];
 
 
-        //SMTP mailing starts here
-        if ($emailcontent != null){
-            $mailto = $_POST['emailto'];
-            $subject = $_POST['subject'];
-             if ($subject == null) {
-                 $subject = "Undefined Subject";
-             }
 
-            //PHP mailer
-            $mail = new \PHPMailer\PHPMailer\PHPMailer();
+    //SMTP mailing starts here
+    if (isset($_POST['emailinit'])) {
+        //if the radio button has value
+        $sendemail = $_POST['emailinit'];
 
-             //default config of sending email using PHP mailer and Gmail SMTP
-            $mail->isSMTP();
-            $mail->Host = "smtp.gmail.com";
-            $mail->SMTPAuth = true;
-            $mail->Username = "techsuppsysUIP@gmail.com";
-            $mail->Password = "quetzalcoatl";
-            $mail->SMTPSecure = "tls";
-            $mail->Port = "587";
-            $mail->From = "techsupport@melhamconstruction.ph";
-            $mail->FromName = "UIP Technical Support";
-            $mail->addAddress($mailto,"Intern");
-            $mail->isHTML(true);
-            $mail->Subject = $subject;
-            $mail->Body = $emailcontent;
-            $mail->AltBody = "Email Content";
+        if ($sendemail == "yes") {
+            if ($emailcontent != null){
+                $mailto = $_POST['emailto'];
+                $subject = $_POST['subject'];
+                if ($subject == null) {
+                    $subject = "Undefined Subject";
+                }
 
-            if (!$mail->send()){
-                echo "Mailer Error: ".$mail->ErrorInfo;
+                //PHP mailer
+                $mail = new \PHPMailer\PHPMailer\PHPMailer();
+
+                //default config of sending email using PHP mailer and Gmail SMTP
+                $mail->isSMTP();
+                $mail->Host = "smtp.gmail.com";
+                $mail->SMTPAuth = true;
+                $mail->Username = "techsuppsysUIP@gmail.com";
+                $mail->Password = "quetzalcoatl";
+                $mail->SMTPSecure = "tls";
+                $mail->Port = "587";
+                $mail->From = "techsupport@melhamconstruction.ph";
+                $mail->FromName = "UIP Technical Support";
+                $mail->addAddress($mailto,"Intern");
+                $mail->isHTML(true);
+                $mail->Subject = $subject;
+                $mail->Body = $emailcontent;
+                $mail->AltBody = "Email Content";
+
+                if (!$mail->send()){
+                    echo "Mailer Error: ".$mail->ErrorInfo;
+                }
+                else {
+                    echo '<script>alert("Ticket Updated Successfully.")
+                window.location.replace("supporthomepage.php");
+                </script>';
+                }
+                } else {
+                    header('location: supporthomepage.php');
+                }
             }
-            else {
-                echo "Email has been sent";
-                header('location: supporthomepage.php');
-            }
-        } else {
+        else { // if $sendemail is not equal to yes
             header('location: supporthomepage.php');
         }
-
-
+        }
+        else { //if $_POST['emailinit'] is not set
+            header('location: supporthomepage.php');
+        }
     }
 ?>

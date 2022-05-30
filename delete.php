@@ -28,10 +28,11 @@ session_start();
     $status = $tickets['Status'];
     $date = $tickets['Date'];
     $personnelassigned = $tickets['Personnel_ID'];
+    $note = $tickets['Note'];
 
     //Since this ticket is being deleted, we will be inserting it on the recycle bin
-    $InsertTicket = "INSERT INTO ticketbin (TID,Sender_ID,Sender_Name, Sender_Email, Subject, Category, Content, Status, Date, Personnel_ID) 
-                      VALUES('$ticketID','$currentuser','$sender','$sender_email','$subject','$category','$content','$status','$date','$personnelassigned')";
+    $InsertTicket = "INSERT INTO ticketbin (TID,Sender_ID,Sender_Name, Sender_Email, Subject, Category, Content, Status, Date, Personnel_ID,Note) 
+                      VALUES('$ticketID','$currentuser','$sender','$sender_email','$subject','$category','$content','$status','$date','$personnelassigned','$note')";
     mysqli_query($con, $InsertTicket);
 
 

@@ -24,17 +24,20 @@ $currentuser = $_SESSION['id'];
         $category = $_POST['category'];
         $content = $_POST['content'];
         $date = $_POST['timeStamp'];
+        $open = "Open";
+        $note = "";
 
 
 
         //inserting the ticket data into the database
-        $InsertTicket = "INSERT INTO tickets (Sender_ID,Sender_Name, Sender_Email, Subject, Category, Content, Status, Date, Personnel_ID) 
-                      VALUES('$currentuser','$sender','$sender_email','$subject','$category','$content','Open','$date',0)";
+        $InsertTicket = "INSERT INTO tickets (Sender_ID,Sender_Name, Sender_Email, Subject, Category, Content, Status, Date, Personnel_ID, Note) 
+                      VALUES ('$currentuser','$sender','$sender_email','$subject','$category','$content','$open','$date',0,'$note');";
         mysqli_query($con, $InsertTicket);
+        echo '<script type="text/javascript">
+        alert("Ticket successfully submitted.");
+        window.location="internhomepage.php";
+        </script>';
 
     }
 ?>
-<script type="text/javascript">
-    alert('Ticket successfully submitted.');
-    window.location="internhomepage.php";
-</script>
+

@@ -28,14 +28,15 @@ session_start();
     $status = $tickets['Status'];
     $date = $tickets['Date'];
     $personnelassigned = $tickets['Personnel_ID'];
+    $note = $tickets['Note'];
 
 
     //since we will be restoring the deleted ticket, we will insert its details again in the tickets table
-    $InsertTicket = "INSERT INTO tickets (TID,Sender_ID,Sender_Name, Sender_Email, Subject, Category, Content, Status, Date, Personnel_ID) 
-                      VALUES('$ticketID','$currentuser','$sender','$sender_email','$subject','$category','$content','$status','$date','$personnelassigned')";
+    $InsertTicket = "INSERT INTO tickets (TID,Sender_ID,Sender_Name, Sender_Email, Subject, Category, Content, Status, Date, Personnel_ID, Note) 
+                      VALUES('$ticketID','$currentuser','$sender','$sender_email','$subject','$category','$content','$status','$date','$personnelassigned','$note')";
     mysqli_query($con, $InsertTicket);
 
-    //when the insertion is done, we can now delete the ticket recorc on the ticket bin, since it is already restored
+    //when the insertion is done, we can now delete the ticket record on the ticket bin, since it is already restored
     $delquery = "DELETE FROM ticketbin WHERE Sender_ID='$currentuser' AND TID='$id' LIMIT 1;";
     mysqli_query($con,$delquery);
 ?>
