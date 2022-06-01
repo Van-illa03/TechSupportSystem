@@ -16,7 +16,6 @@ if (isset($_POST['login'])){
     //getting the values from the forms
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $usertype = $_POST['usertype'];
     $supportcode = $_POST['sc'];
     $FilteringResult = false;
 

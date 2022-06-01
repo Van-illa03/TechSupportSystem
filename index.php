@@ -15,8 +15,7 @@ unset($_SESSION['id']);
 if (isset($_POST['login'])){
     //getting the values from the forms
     $email = $_POST['email'];
-    $password = $_POST['password'];
-    $usertype = $_POST['usertype'];
+    $password = $_POST['password'];s
     $FilteringResult = false;
 
 
