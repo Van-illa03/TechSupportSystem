@@ -50,7 +50,7 @@ if (isset($_POST['login'])){
             exit();
         }
         else { // if all verifications are passed, the registration will proceed
-
+            $_SESSION['id'] = $FilteringResult['UID'];
             echo '<script>alert("Login successful.")
                 window.location.replace("supporthomepage.php");
                 </script>';

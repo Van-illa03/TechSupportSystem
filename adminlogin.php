@@ -51,6 +51,7 @@ if (isset($_POST['login'])){
         }
         else { // if all verifications are passed, the registration will proceed
 
+            $_SESSION['id'] = $FilteringResult['UID'];
             echo '<script>alert("Login successful.")
                 window.location.replace("adminhomepage.php");
                 </script>';

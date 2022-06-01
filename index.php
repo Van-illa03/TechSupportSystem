@@ -15,7 +15,7 @@ unset($_SESSION['id']);
 if (isset($_POST['login'])){
     //getting the values from the forms
     $email = $_POST['email'];
-    $password = $_POST['password'];s
+    $password = $_POST['password'];
     $FilteringResult = false;
 
 
@@ -44,7 +44,7 @@ if (isset($_POST['login'])){
         }
 
         else { // if all verifications are passed, the registration will proceed
-
+            $_SESSION['id'] = $FilteringResult['UID'];
             echo '<script>alert("Login successful.")
                 window.location.replace("internhomepage.php");
                 </script>';
