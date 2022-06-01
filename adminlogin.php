@@ -1,5 +1,5 @@
 <?php
-//require ("createdbtable.php");
+require ("createdbtable.php");
 
 //database connection
 $con=mysqli_connect("localhost","root","","techsupportsystem");
