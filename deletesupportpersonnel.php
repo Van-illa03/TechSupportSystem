@@ -10,14 +10,18 @@ session_start();
 $currentuser = $_SESSION['id'];
 
     $zero = 0;
+    //getting the ticket id through URL parameter
     $id=$_GET["id"];
 
+    //updating the tickets handled by the deleted personnel
     $UpdateTicket = "UPDATE tickets SET Personnel_ID='$zero' WHERE Personnel_ID='$id'";
     mysqli_query($con, $UpdateTicket);
 
+    //updating the tickets handled by the deleted personnel
     $UpdateTicket = "UPDATE ticketbin SET Personnel_ID='$zero' WHERE Personnel_ID='$id'";
     mysqli_query($con, $UpdateTicket);
 
+    //deleting the support personnel
     $delquery = "DELETE FROM supportteam WHERE UID='$id' LIMIT 1;";
     mysqli_query($con,$delquery);
 ?>

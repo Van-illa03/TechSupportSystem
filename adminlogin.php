@@ -96,7 +96,7 @@ if (isset($_POST['login'])){
 
                                     <div class="d-flex flex-row justify-content-center">
                                         <div class="p-2">
-                                            <input type="password" class="form-control" id="sc" placeholder="Support Code" name="ac" style="width:130px;">
+                                            <input type="password" class="form-control" id="sc" placeholder="Admin Code" name="ac" style="width:130px;">
                                         </div>
                                     </div>
                                 </div>

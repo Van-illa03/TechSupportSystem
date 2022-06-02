@@ -58,7 +58,7 @@ $getcurrentuser = mysqli_fetch_assoc($userquery);
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item "href="adminprofile.php" id="profile">Profile</a></li>
-                        <li><a class="dropdown-item " href="index.php" id="logout">Log Out</a></li>
+                        <li><a class="dropdown-item " href="adminlogin.php" id="logout">Log Out</a></li>
                     </ul>
                 </div>
             </li>
