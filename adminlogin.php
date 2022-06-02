@@ -106,7 +106,7 @@ if (isset($_POST['login'])){
                         </form>
                                 <hr style="margin:9px;">
                                 <p style="font-size: 12px; margin:6px;">Don't have an account? Register now!</p>
-                                <a href="signupsupport.php"><button name="login" class="btn btn-info">Register for an Account</button></a>
+                                <a href="signupadmin.php"><button name="login" class="btn btn-info">Register for an Account</button></a>
                     </div>
                     </div>
         <div class="align-self-center p-0">

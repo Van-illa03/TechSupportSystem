@@ -143,7 +143,7 @@ if (!$con){
         </form>
             <hr style="margin:9px;">
             <p style="font-size: 12px; margin:6px;">Already have an account? Login now!</p>
-            <a href="index.php"><button class="btn btn-info">Account Login</button></a>
+            <a href="adminlogin.php"><button class="btn btn-info">Account Login</button></a>
         </div>
             </div>
         <div class="align-self-center p-0">
